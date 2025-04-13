@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PacaGroup.Ecommerce.Application.DTO\PacaGroup.Ecommerce.Application.DTO.csproj" />
+    <ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Common\PacaGroup.Ecommerce.Transversal.Common.csproj" />
+  </ItemGroup>
+
+</Project>
