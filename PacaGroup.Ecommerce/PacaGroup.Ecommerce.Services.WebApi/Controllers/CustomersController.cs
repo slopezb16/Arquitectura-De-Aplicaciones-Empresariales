@@ -13,7 +13,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
     //[Route("api/[controller]")]
     [ApiController]
     //Ya que es una API y no usás Views, es mejor que heredes de ControllerBase en vez de Controller
-    public class CustomersController : ControllerBase // Controller
+    public class CustomersController : ControllerBase // Controller o ControllerBase
     {
         private readonly ICustomersApplication _customersApplication;
 
