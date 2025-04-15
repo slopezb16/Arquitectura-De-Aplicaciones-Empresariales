@@ -6,11 +6,11 @@ using System.Data;
 
 namespace PacaGroup.Ecommerce.Infrastructure.Repository
 {
-    public class CustumersRepository : ICustomersRepository
+    public class CustomersRepository : ICustomersRepository
     {
         private readonly IConnectionFactory _connectionFactory;
 
-        public CustumersRepository(IConnectionFactory connectionFactory)
+        public CustomersRepository(IConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
@@ -34,7 +34,7 @@ namespace PacaGroup.Ecommerce.Infrastructure.Repository
                 //        return false;
                 //    }
                 //}
-                var query = "CustomersInster";
+                var query = "CustomersInsert";
                 var parameters = new DynamicParameters();
                 parameters.Add("CustomerId", custumer.CustomerId);
                 parameters.Add("CompanyName", custumer.CompanyName);
@@ -115,7 +115,7 @@ namespace PacaGroup.Ecommerce.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersInster";
+                var query = "CustomersInsert";
                 var parameters = new DynamicParameters();
                 parameters.Add("CustomerId", customer.CustomerId);
                 parameters.Add("CompanyName", customer.CompanyName);

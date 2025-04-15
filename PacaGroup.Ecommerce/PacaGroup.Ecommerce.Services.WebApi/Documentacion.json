@@ -1,0 +1,343 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Ecommerce API",
+		"description": "API para gestión de clientes y usuarios en PacaGroup",
+		"contact": {
+			"name": "Santiago López Botero",
+			"url": "https://github.com/santiagolopezbotero",
+			"email": "santiago@gmail.com"
+		},
+		"version": "v1"
+	},
+	"paths": {
+		"/api/Customers/Insert": {
+			"post": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Inserta un nuevo cliente.",
+				"requestBody": {
+					"description": "Datos del cliente a insertar.",
+					"content": {
+						"application/json-patch+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"text/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"application/*+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/Update": {
+			"put": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Actualiza un cliente existente.",
+				"requestBody": {
+					"description": "Datos del cliente a actualizar.",
+					"content": {
+						"application/json-patch+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"text/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"application/*+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/Delete/{customerId}": {
+			"delete": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Elimina un cliente por su identificador.",
+				"parameters": [
+					{
+						"name": "customerId",
+						"in": "path",
+						"description": "ID del cliente.",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/GetById/{customerId}": {
+			"get": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Obtiene un cliente por su identificador.",
+				"parameters": [
+					{
+						"name": "customerId",
+						"in": "path",
+						"description": "ID del cliente.",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/GetAll": {
+			"get": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Obtiene todos los clientes.",
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/Insert/async": {
+			"post": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Inserta un nuevo cliente (versión asíncrona).",
+				"requestBody": {
+					"description": "Datos del cliente a insertar.",
+					"content": {
+						"application/json-patch+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"text/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"application/*+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/Update/async": {
+			"put": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Actualiza un cliente existente (versión asíncrona).",
+				"requestBody": {
+					"description": "Datos del cliente a actualizar.",
+					"content": {
+						"application/json-patch+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"text/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						},
+						"application/*+json": {
+							"schema": {
+								"$ref": "#/components/schemas/CustomersDto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/Delete/async/{customerId}": {
+			"delete": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Elimina un cliente por su ID (versión asíncrona).",
+				"parameters": [
+					{
+						"name": "customerId",
+						"in": "path",
+						"description": "ID del cliente.",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/GetById/async/{customerId}": {
+			"get": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Obtiene un cliente por su ID (versión asíncrona).",
+				"parameters": [
+					{
+						"name": "customerId",
+						"in": "path",
+						"description": "ID del cliente.",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/api/Customers/GetAll/async": {
+			"get": {
+				"tags": [
+					"Customers"
+				],
+				"summary": "Obtiene todos los clientes (versión asíncrona).",
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"CustomersDto": {
+				"type": "object",
+				"properties": {
+					"customerId": {
+						"type": "string",
+						"nullable": true
+					},
+					"companyName": {
+						"type": "string",
+						"nullable": true
+					},
+					"contactName": {
+						"type": "string",
+						"nullable": true
+					},
+					"contactTitle": {
+						"type": "string",
+						"nullable": true
+					},
+					"address": {
+						"type": "string",
+						"nullable": true
+					},
+					"city": {
+						"type": "string",
+						"nullable": true
+					},
+					"region": {
+						"type": "string",
+						"nullable": true
+					},
+					"postalCode": {
+						"type": "string",
+						"nullable": true
+					},
+					"country": {
+						"type": "string",
+						"nullable": true
+					},
+					"phone": {
+						"type": "string",
+						"nullable": true
+					},
+					"fax": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"additionalProperties": false
+			}
+		}
+	}
+}

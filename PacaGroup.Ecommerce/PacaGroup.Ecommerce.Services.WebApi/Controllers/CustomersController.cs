@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface;
 
@@ -6,6 +8,9 @@ using PacaGroup.Ecommerce.Application.Interface;
 
 namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
 {
+    /// <summary>
+    /// Controlador para gestionar operaciones CRUD de clientes.
+    /// </summary>
     // No necesitas especificar rutas en cada acción
     [Route("api/[controller]/[action]")]
     // APIs RESTful
@@ -13,6 +18,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
     //[Route("api/[controller]")]
     [ApiController]
     //Ya que es una API y no usás Views, es mejor que heredes de ControllerBase en vez de Controller
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CustomersController : ControllerBase // Controller o ControllerBase
     {
         private readonly ICustomersApplication _customersApplication;
@@ -25,6 +31,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
 
         #region Métodos Sincrónicos
 
+        /// <summary>
+        /// Inserta un nuevo cliente.
+        /// </summary>
+        /// <param name="customerDto">Datos del cliente a insertar.</param>
+        /// <returns>Resultado de la operación.</returns>
         [HttpPost]
         public IActionResult Insert([FromBody] CustomersDto customerDto)
         {
@@ -38,6 +49,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             return BadRequest(response);
         }
 
+        /// <summary>
+        /// Actualiza un cliente existente.
+        /// </summary>
+        /// <param name="customerDto">Datos del cliente a actualizar.</param>
+        /// <returns>Resultado de la operación.</returns>
         [HttpPut]
         public IActionResult Update([FromBody] CustomersDto customerDto)
         {
@@ -51,6 +67,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             return BadRequest(response);
         }
 
+        /// <summary>
+        /// Elimina un cliente por su identificador.
+        /// </summary>
+        /// <param name="customerId">ID del cliente.</param>
+        /// <returns>Resultado de la operación.</returns>
         [HttpDelete("{customerId}")]
         public IActionResult Delete(string customerId)
         {
@@ -64,6 +85,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             return BadRequest(response);
         }
 
+        /// <summary>
+        /// Obtiene un cliente por su identificador.
+        /// </summary>
+        /// <param name="customerId">ID del cliente.</param>
+        /// <returns>Cliente encontrado o mensaje de error.</returns>
         [HttpGet("{customerId}")]
         public IActionResult GetById(string customerId)
         {
@@ -77,6 +103,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             return NotFound(response);
         }
 
+        /// <summary>
+        /// Obtiene todos los clientes.
+        /// </summary>
+        /// <returns>Lista de clientes.</returns>
+        //[AllowAnonymous]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -90,6 +121,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
 
         #region Métodos Asíncronos
 
+        /// <summary>
+        /// Inserta un nuevo cliente (versión asíncrona).
+        /// </summary>
+        /// <param name="customerDto">Datos del cliente a insertar.</param>
+        /// <returns>Resultado de la operación.</returns>
         [HttpPost("async")]
         public async Task<IActionResult> InsertAsync([FromBody] CustomersDto customerDto)
         {
@@ -100,6 +136,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             return response.IsSuccess ? Ok(response) : BadRequest(response);
         }
 
+        /// <summary>
+        /// Actualiza un cliente existente (versión asíncrona).
+        /// </summary>
+        /// <param name="customerDto">Datos del cliente a actualizar.</param>
+        /// <returns>Resultado de la operación.</returns>
         [HttpPut("async")]
         public async Task<IActionResult> UpdateAsync([FromBody] CustomersDto customerDto)
         {
@@ -110,6 +151,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             return response.IsSuccess ? Ok(response) : BadRequest(response);
         }
 
+        /// <summary>
+        /// Elimina un cliente por su ID (versión asíncrona).
+        /// </summary>
+        /// <param name="customerId">ID del cliente.</param>
+        /// <returns>Resultado de la operación.</returns>
         [HttpDelete("async/{customerId}")]
         public async Task<IActionResult> DeleteAsync(string customerId)
         {
@@ -120,6 +166,11 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             return response.IsSuccess ? Ok(response) : BadRequest(response);
         }
 
+        /// <summary>
+        /// Obtiene un cliente por su ID (versión asíncrona).
+        /// </summary>
+        /// <param name="customerId">ID del cliente.</param>
+        /// <returns>Cliente encontrado o mensaje de error.</returns>
         [HttpGet("async/{customerId}")]
         public async Task<IActionResult> GetByIdAsync(string customerId)
         {
@@ -130,6 +181,10 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             return (response.IsSuccess && response.Data != null) ? Ok(response) : NotFound(response);
         }
 
+        /// <summary>
+        /// Obtiene todos los clientes (versión asíncrona).
+        /// </summary>
+        /// <returns>Lista de clientes.</returns>
         [HttpGet("async")]
         public async Task<IActionResult> GetAllAsync()
         {
