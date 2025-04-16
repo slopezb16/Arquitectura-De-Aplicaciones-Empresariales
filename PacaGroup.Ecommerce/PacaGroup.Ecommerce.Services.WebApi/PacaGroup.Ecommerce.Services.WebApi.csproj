@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -36,6 +36,7 @@
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Infrastructure.Interface\PacaGroup.Ecommerce.Infrastructure.Interface.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Infrastructure.Repository\PacaGroup.Ecommerce.Infrastructure.Repository.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Common\PacaGroup.Ecommerce.Transversal.Common.csproj" />
+		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Logging\PacaGroup.Ecommerce.Transversal.Logging.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Mapper\PacaGroup.Ecommerce.Transversal.Mapper.csproj" />
 	</ItemGroup>
 

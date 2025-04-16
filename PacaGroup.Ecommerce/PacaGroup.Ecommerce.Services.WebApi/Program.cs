@@ -15,6 +15,7 @@ using PacaGroup.Ecommerce.Services.WebApi.Helpers;
 using PacaGroup.Ecommerce.Domain.Core;
 using Microsoft.OpenApi.Models;
 using System.Security.Claims;
+using PacaGroup.Ecommerce.Transversal.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,8 @@ builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
 builder.Services.AddScoped<IUsersApplication, UsersApplication>();
 builder.Services.AddScoped<IUsersDomain, UsersDomain>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+
+builder.Services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingsProfile()));
 
