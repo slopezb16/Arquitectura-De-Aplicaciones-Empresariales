@@ -1,6 +1,6 @@
-﻿namespace PacaGroup.Ecommerce.Domain.Entity
+﻿namespace PacaGroup.Ecommerce.Application.DTO
 {
-    public class Customers
+    public sealed record CustomersDto2
     {
         public string? CustomerId { get; set; }
         public string? CompanyName { get; set; }
