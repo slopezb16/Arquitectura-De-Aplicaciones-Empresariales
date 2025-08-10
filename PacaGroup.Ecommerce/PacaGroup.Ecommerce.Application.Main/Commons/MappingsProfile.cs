@@ -10,6 +10,10 @@ namespace PacaGroup.Ecommerce.Application.Main.Commons
         {
             CreateMap<Customers, CustomersDto2>().ReverseMap();
 
+            // El que falta:
+            CreateMap<Users, UsersDto>();
+            CreateMap<UsersDto, Users>();
+
             //CreateMap<Customer, CustomerDto>().ReverseMap()
             //.ForMember(destination => destination.CustomerId, source => source.MapFrom(src => src.CustomerId))
             //.ForMember(destination => destination.CompanyName, source => source.MapFrom(src => src.CompanyName))

@@ -60,8 +60,8 @@ builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 
 builder.Services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
-//builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingsProfile()));
-builder.Services.AddAutoMapper(typeof(MappingsProfile));
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingsProfile()));
+//builder.Services.AddAutoMapper(typeof(MappingsProfile));
 
 // -------------------------------------
 // 🛡️ Configuración JWT sin HTTPS
