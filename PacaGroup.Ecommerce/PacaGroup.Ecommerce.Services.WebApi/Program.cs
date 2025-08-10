@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using PacaGroup.Ecommerce.Transversal.Mapper;
+﻿using PacaGroup.Ecommerce.Transversal.Mapper;
 using PacaGroup.Ecommerce.Transversal.Common;
 using PacaGroup.Ecommerce.Infrastructure.Data;
 using PacaGroup.Ecommerce.Infrastructure.Repository;
@@ -7,14 +6,11 @@ using PacaGroup.Ecommerce.Infrastructure.Interface;
 using PacaGroup.Ecommerce.Domain.Interface;
 using PacaGroup.Ecommerce.Application.Interface;
 using PacaGroup.Ecommerce.Application.Main;
-using Newtonsoft.Json.Serialization;
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using PacaGroup.Ecommerce.Services.WebApi.Helpers;
 using PacaGroup.Ecommerce.Domain.Core;
 using Microsoft.OpenApi.Models;
-using System.Security.Claims;
 using PacaGroup.Ecommerce.Transversal.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,12 +34,25 @@ var jwtAudience = jwtSection["Audience"];
 // -------------------------------------
 // 🧩 Inyección de dependencias
 // -------------------------------------
+
+//Capa de dominio
+builder.Services.addDomainServices();
+
+//Capa de infrastrctura
+builder.Services.AddInfrastructureServices();
+
+//Capa de aplicaciones
+builder.Services.AddApplicationServices();
+
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 builder.Services.AddSingleton<IConnectionFactory, ConnectionFactory>();
 builder.Services.AddScoped<ICustomersApplication, CustomersApplication>();
+builder.Services.AddScoped<ICustomersApplication2, CustomersApplication2>();
 builder.Services.AddScoped<ICustomersDomain, CustomersDomain>();
+builder.Services.AddScoped<ICustomersDomain2, CustomersDomain2>();
 builder.Services.AddScoped<ICustomersRepository, CustomersRepository>();
+builder.Services.AddScoped<ICustomersRepository2, CustomersRepository2>();
 
 builder.Services.AddScoped<IUsersApplication, UsersApplication>();
 builder.Services.AddScoped<IUsersDomain, UsersDomain>();
@@ -51,7 +60,8 @@ builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 
 builder.Services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
-builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingsProfile()));
+//builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingsProfile()));
+builder.Services.AddAutoMapper(typeof(MappingsProfile));
 
 // -------------------------------------
 // 🛡️ Configuración JWT sin HTTPS

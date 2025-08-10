@@ -7,7 +7,7 @@ using PacaGroup.Ecommerce.Transversal.Common;
 
 namespace PacaGroup.Ecommerce.Application.Main
 {
-    internal class CustomersApplication2 : ICustomersApplication2
+    public class CustomersApplication2 : ICustomersApplication2
     {
         private readonly ICustomersDomain2 _CustomersDomain2;
         private readonly IMapper _mapper;

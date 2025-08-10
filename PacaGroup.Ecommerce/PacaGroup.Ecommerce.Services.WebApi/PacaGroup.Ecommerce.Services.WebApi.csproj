@@ -18,14 +18,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AutoMapper" Version="15.0.1" />
+		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.8" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="9.0.8" />
-		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.13.0" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.13.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -38,7 +38,6 @@
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Infraestructura.Data\PacaGroup.Ecommerce.Infrastructure.Data.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Infrastructure.Interface\PacaGroup.Ecommerce.Infrastructure.Interface.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Infrastructure.Repository\PacaGroup.Ecommerce.Infrastructure.Repository.csproj" />
-		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Common\PacaGroup.Ecommerce.Transversal.Common.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Logging\PacaGroup.Ecommerce.Transversal.Logging.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Mapper\PacaGroup.Ecommerce.Transversal.Mapper.csproj" />
 	</ItemGroup>

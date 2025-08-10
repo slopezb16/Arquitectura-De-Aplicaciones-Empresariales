@@ -4,7 +4,7 @@ using PacaGroup.Ecommerce.Infrastructure.Interface;
 
 namespace PacaGroup.Ecommerce.Domain.Core
 {
-    internal class CustomersDomain2 : ICustomersDomain2
+    public class CustomersDomain2 : ICustomersDomain2
     {
         private readonly IUnitOfWork _unitOfWork;
 

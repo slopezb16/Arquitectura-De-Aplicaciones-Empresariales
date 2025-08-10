@@ -1,12 +1,9 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface;
 using PacaGroup.Ecommerce.Domain.Entity;
 using PacaGroup.Ecommerce.Domain.Interface;
 using PacaGroup.Ecommerce.Transversal.Common;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace PacaGroup.Ecommerce.Application.Main
 {

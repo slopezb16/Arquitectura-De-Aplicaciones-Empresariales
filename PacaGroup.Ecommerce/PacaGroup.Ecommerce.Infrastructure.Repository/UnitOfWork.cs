@@ -4,8 +4,8 @@ namespace PacaGroup.Ecommerce.Infrastructure.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public ICustomersRepository Customers { get; }
-        public UnitOfWork(ICustomersRepository customers)
+        public ICustomersRepository2 Customers { get; }
+        public UnitOfWork(ICustomersRepository2 customers)
         {
             Customers = customers;
         }
