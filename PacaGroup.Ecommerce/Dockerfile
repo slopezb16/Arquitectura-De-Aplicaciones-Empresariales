@@ -1,0 +1,41 @@
+# Consulte https://aka.ms/customizecontainer para aprender a personalizar su contenedor de depuración y cómo Visual Studio usa este Dockerfile para compilar sus imágenes para una depuración más rápida.
+
+# Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+USER $APP_UID
+WORKDIR /app
+EXPOSE 8080
+
+
+# Esta fase se usa para compilar el proyecto de servicio
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["PacaGroup.Ecommerce.Services.WebApi/PacaGroup.Ecommerce.Services.WebApi.csproj", "PacaGroup.Ecommerce.Services.WebApi/"]
+COPY ["PacaGroup.Ecommerce.Application.DTO/PacaGroup.Ecommerce.Application.DTO.csproj", "PacaGroup.Ecommerce.Application.DTO/"]
+COPY ["PacaGroup.Ecommerce.Application.Interface/PacaGroup.Ecommerce.Application.Interface.csproj", "PacaGroup.Ecommerce.Application.Interface/"]
+COPY ["PacaGroup.Ecommerce.Transversal.Common/PacaGroup.Ecommerce.Transversal.Common.csproj", "PacaGroup.Ecommerce.Transversal.Common/"]
+COPY ["PacaGroup.Ecommerce.Application.Main/PacaGroup.Ecommerce.Application.Main.csproj", "PacaGroup.Ecommerce.Application.Main/"]
+COPY ["PacaGroup.Ecommerce.Domain.Entity/PacaGroup.Ecommerce.Domain.Entity.csproj", "PacaGroup.Ecommerce.Domain.Entity/"]
+COPY ["PacaGroup.Ecommerce.Domain.Interface/PacaGroup.Ecommerce.Domain.Interface.csproj", "PacaGroup.Ecommerce.Domain.Interface/"]
+COPY ["PacaGroup.Ecommerce.Domain.Core/PacaGroup.Ecommerce.Domain.Core.csproj", "PacaGroup.Ecommerce.Domain.Core/"]
+COPY ["PacaGroup.Ecommerce.Infrastructure.Interface/PacaGroup.Ecommerce.Infrastructure.Interface.csproj", "PacaGroup.Ecommerce.Infrastructure.Interface/"]
+COPY ["PacaGroup.Ecommerce.Infraestructura.Data/PacaGroup.Ecommerce.Infrastructure.Data.csproj", "PacaGroup.Ecommerce.Infraestructura.Data/"]
+COPY ["PacaGroup.Ecommerce.Infrastructure.Repository/PacaGroup.Ecommerce.Infrastructure.Repository.csproj", "PacaGroup.Ecommerce.Infrastructure.Repository/"]
+COPY ["PacaGroup.Ecommerce.Transversal.Logging/PacaGroup.Ecommerce.Transversal.Logging.csproj", "PacaGroup.Ecommerce.Transversal.Logging/"]
+COPY ["PacaGroup.Ecommerce.Transversal.Mapper/PacaGroup.Ecommerce.Transversal.Mapper.csproj", "PacaGroup.Ecommerce.Transversal.Mapper/"]
+RUN dotnet restore "./PacaGroup.Ecommerce.Services.WebApi/PacaGroup.Ecommerce.Services.WebApi.csproj"
+COPY . .
+WORKDIR "/src/PacaGroup.Ecommerce.Services.WebApi"
+RUN dotnet build "./PacaGroup.Ecommerce.Services.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./PacaGroup.Ecommerce.Services.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "PacaGroup.Ecommerce.Services.WebApi.dll"]

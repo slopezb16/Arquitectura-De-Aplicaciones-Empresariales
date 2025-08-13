@@ -30,6 +30,19 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             _appSettingJWT = appSettingsJWT.Value;
         }
 
+        /// <summary>
+        /// Autentica a un usuario en el sistema y genera un token JWT si las credenciales son válidas.
+        /// </summary>
+        /// <remarks>
+        /// Este endpoint permite el acceso anónimo y recibe un objeto <see cref="UsersDto"/> 
+        /// con el nombre de usuario y contraseña.  
+        /// Si la autenticación es exitosa, se devuelve un objeto de respuesta que incluye 
+        /// los datos del usuario y un token JWT.
+        /// </remarks>
+        /// <param name="usersDto">
+        /// Objeto que contiene el nombre de usuario (<c>UserName</c>) y la contraseña (<c>Password</c>).
+        /// Ejemplo: Usuario: <c>slopezb</c>, Contraseña: <c>123456</c>.
+        /// </param>
         [AllowAnonymous]
         [HttpPost]
         // GET: api/<UsersController>
@@ -44,10 +57,10 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
                     return Ok(response);
                 }
                 else
-                    return NotFound(response.Message);
+                    return NotFound(response);
             }
 
-            return BadRequest(response.Message);
+            return BadRequest(response);
         }
 
         //private string BuildToken(Response<UsersDto> usersDto)

@@ -12,6 +12,7 @@ using PacaGroup.Ecommerce.Services.WebApi.Helpers;
 using PacaGroup.Ecommerce.Domain.Core;
 using Microsoft.OpenApi.Models;
 using PacaGroup.Ecommerce.Transversal.Logging;
+using PacaGroup.Ecommerce.Services.WebApi.Modules.Validator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -62,6 +63,9 @@ builder.Services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
 builder.Services.AddAutoMapper(cfg => cfg.AddProfile(new MappingsProfile()));
 //builder.Services.AddAutoMapper(typeof(MappingsProfile));
+
+//FluentValidator
+builder.Services.AddValidator();
 
 // -------------------------------------
 // 🛡️ Configuración JWT sin HTTPS
@@ -160,12 +164,12 @@ builder.Services.AddSwaggerGen(options =>
 // -------------------------------------
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseDeveloperExceptionPage(); // opcional
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 // ❌ No hay redirección HTTPS
 // app.UseHttpsRedirection(); <- ¡NO incluir esto en HTTP!
