@@ -15,8 +15,10 @@
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.DTO\PacaGroup.Ecommerce.Application.DTO.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.Interface\PacaGroup.Ecommerce.Application.Interface.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.Validator\PacaGroup.Ecommerce.Application.Validator.csproj" />
+    <ProjectReference Include="..\PacaGroup.Ecommerce.Domain.Core\PacaGroup.Ecommerce.Domain.Core.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Domain.Entity\PacaGroup.Ecommerce.Domain.Entity.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Domain.Interface\PacaGroup.Ecommerce.Domain.Interface.csproj" />
+    <ProjectReference Include="..\PacaGroup.Ecommerce.Infrastructure.Repository\PacaGroup.Ecommerce.Infrastructure.Repository.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Common\PacaGroup.Ecommerce.Transversal.Common.csproj" />
   </ItemGroup>
 

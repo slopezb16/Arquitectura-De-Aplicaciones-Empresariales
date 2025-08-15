@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface;
 using PacaGroup.Ecommerce.Application.Validator;
@@ -16,9 +17,10 @@ namespace PacaGroup.Ecommerce.Application.Main
     {
         private readonly IMapper _mapper;
         private readonly IUsersDomain _usersDomain;
-        private readonly UsersDtoValidator _usersDtoValidator;
+        //private readonly UsersDtoValidator _usersDtoValidator;
+        private readonly IValidator<UsersDto> _usersDtoValidator;
 
-        public UsersApplication(IMapper mapper, IUsersDomain usersDomain, UsersDtoValidator usersDtoValidator)
+        public UsersApplication(IMapper mapper, IUsersDomain usersDomain, IValidator<UsersDto> usersDtoValidator)
         {
             _mapper = mapper;
             _usersDomain = usersDomain;
