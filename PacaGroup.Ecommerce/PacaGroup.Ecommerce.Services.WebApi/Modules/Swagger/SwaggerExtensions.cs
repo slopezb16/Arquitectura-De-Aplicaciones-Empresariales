@@ -8,7 +8,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger
     {
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
-            //services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(options =>

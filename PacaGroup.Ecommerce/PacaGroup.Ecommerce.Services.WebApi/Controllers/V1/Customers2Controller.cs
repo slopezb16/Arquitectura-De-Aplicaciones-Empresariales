@@ -18,8 +18,8 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V1
             _customersApplication = customersApplication;
         }
 
-        [HttpPost("InsertAsync2")]
-        public async Task<IActionResult> InsertAsync2([FromBody] CustomersDto2 customerDto)
+        [HttpPost("InsertAsync")]
+        public async Task<IActionResult> InsertAsync([FromBody] CustomersDto2 customerDto)
         {
             if (customerDto == null)
                 return BadRequest();

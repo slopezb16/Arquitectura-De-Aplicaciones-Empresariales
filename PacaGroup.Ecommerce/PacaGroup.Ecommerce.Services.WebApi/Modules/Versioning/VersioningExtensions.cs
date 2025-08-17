@@ -27,8 +27,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning
                 // options.ApiVersionReader = ApiVersionReader.Combine(
                 //     new UrlSegmentApiVersionReader(),
                 //     new HeaderApiVersionReader("x-api-version"));
-            })
-            .AddApiExplorer(options =>
+            }).AddMvc().AddApiExplorer(options =>
             {
                 options.GroupNameFormat = "'v'VVV";  // v1, v1.0
                 options.SubstituteApiVersionInUrl = true; // QueryStringApiVersionReader y HeaderApiVersionReader No tienen esto se comenta

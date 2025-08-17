@@ -2,3 +2,17 @@ docker build -t pacagroup-ecommerce-api .
 docker stop pacagroup-ecommerce-api
 docker rm pacagroup-ecommerce-api
 docker run -d -p 8080:8080 --name pacagroup-ecommerce-api pacagroup-ecommerce-api
+
+/***********************************************************************************/
+# build-and-run.ps1
+
+# 1. Construir la imagen con la última versión del código
+docker build -t pacagroup-ecommerce-api .
+
+# 2. Si existe un contenedor con el mismo nombre, pararlo y eliminarlo
+docker stop pacagroup-ecommerce-api 2>$null
+docker rm pacagroup-ecommerce-api 2>$null
+
+# 3. Crear y correr un nuevo contenedor
+docker run -d -p 8080:8080 --name pacagroup-ecommerce-api pacagroup-ecommerce-api
+

@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning.ApiExplorer;
+using Microsoft.Extensions.Options;
 using PacaGroup.Ecommerce.Application.Main;
 using PacaGroup.Ecommerce.Domain.Core;
 using PacaGroup.Ecommerce.Infrastructure.Repository;
@@ -9,6 +10,7 @@ using PacaGroup.Ecommerce.Services.WebApi.Modules.Mapper;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Validator;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,20 +31,20 @@ builder.Services.AddInfrastructureServices();
 //Capa de aplicaciones
 builder.Services.AddApplicationServices();
 
-//Injecciones
-builder.Services.AddInjection(builder.Configuration);
-
-//FluentValidator
-builder.Services.AddValidator();
-
-//Mapper
+// -------------------------------------
+// 🌍 AddMapper
+// -------------------------------------
 builder.Services.AddMapper();
 
-//Versioning
-builder.Services.AddVersioning();
+// -------------------------------------
+// 🌍 CORS
+// -------------------------------------
+builder.Services.AddFeature(builder.Configuration);
 
-//FluentValidator
-builder.Services.AddValidator();
+// -------------------------------------
+// 🌍 AddInjection
+// -------------------------------------
+builder.Services.AddInjection(builder.Configuration);
 
 // -------------------------------------
 // 🛡️ Configuración JWT sin HTTPS
@@ -50,9 +52,24 @@ builder.Services.AddValidator();
 builder.Services.AddAuthentication(builder.Configuration);
 
 // -------------------------------------
-// 🌍 CORS
+// 🛡️ Versioning
 // -------------------------------------
-builder.Services.AddFeature(builder.Configuration);
+builder.Services.AddVersioning();
+
+// -------------------------------------
+// 📘 Swagger + JWT
+// -------------------------------------
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwagger();
+//Los metodos comentados estan en AddSwagger
+//builder.Services.ConfigureOptions<ConfigureSwaggerOptions>(); // 👈 Aquí conectamos Versioning con Swagger
+//builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
+// -------------------------------------
+// 🌍 AddValidator FluentValidator
+// -------------------------------------
+//FluentValidator
+builder.Services.AddValidator();
 
 // -------------------------------------
 // Agregar controladores
@@ -62,20 +79,17 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 
 // -------------------------------------
-// 📘 Swagger + JWT
-// -------------------------------------
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwagger();
-builder.Services.ConfigureOptions<ConfigureSwaggerOptions>(); // 👈 Aquí conectamos Versioning con Swagger
-
-// -------------------------------------
 // 🚀 Build y Middleware
 // -------------------------------------
 var app = builder.Build();
 
-//if (app.Environment.IsDevelopment())
-//{
-app.UseDeveloperExceptionPage(); // opcional
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
+app.UseRouting();
+
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
@@ -84,12 +98,10 @@ app.UseSwaggerUI(options =>
     // 👇 genera un endpoint Swagger por cada versión de API descubierta
     foreach (var description in provider.ApiVersionDescriptions)
     {
-        options.SwaggerEndpoint(
-            $"/swagger/{description.GroupName}/swagger.json",
+        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
             description.GroupName.ToUpperInvariant());
     }
 });
-//}
 
 // ❌ No hay redirección HTTPS
 // app.UseHttpsRedirection(); <- ¡NO incluir esto en HTTP!
