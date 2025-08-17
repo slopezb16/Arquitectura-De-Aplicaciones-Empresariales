@@ -1,4 +1,6 @@
-﻿using PacaGroup.Ecommerce.Application.Validator;
+﻿using FluentValidation;
+using PacaGroup.Ecommerce.Application.DTO;
+using PacaGroup.Ecommerce.Application.Validator;
 
 namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Validator
 {
@@ -6,7 +8,9 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Validator
     {
         public static IServiceCollection AddValidator(this IServiceCollection services)
         {
-            services.AddTransient<UsersDtoValidator>();
+            //services.AddTransient<UsersDtoValidator>();
+            services.AddScoped<IValidator<UsersDto>, UsersDtoValidator>();
+
             return services;
         }
     }

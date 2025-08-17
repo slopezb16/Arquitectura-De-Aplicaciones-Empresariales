@@ -109,5 +109,21 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        private static IUsersApplication GetUsersApp() =>
+            _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<IUsersApplication>();
+
+
+        [DataTestMethod]
+        [DataRow("", "", "Errores de Validación")]
+        [DataRow("ALEX", "123456", "Autenticación Exitosa!!!")]
+        [DataRow("ALEX", "123456899", "Usuario no existe")]
+        public void Authenticate_TestCases(string user, string pass, string expected)
+        {
+            var context = GetUsersApp();
+            var result = context.Authenticate(user, pass);
+            Assert.AreEqual(expected, result.Message);
+        }
+
     }
 }
