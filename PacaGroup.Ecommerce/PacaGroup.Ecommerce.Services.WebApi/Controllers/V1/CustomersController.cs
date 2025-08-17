@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PacaGroup.Ecommerce.Application.DTO;
@@ -6,19 +7,20 @@ using PacaGroup.Ecommerce.Application.Interface;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
+namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V1
 {
     /// <summary>
     /// Controlador para gestionar operaciones CRUD de clientes.
     /// </summary>
     // No necesitas especificar rutas en cada acción
-    [Route("api/[controller]/[action]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     // APIs RESTful
     // Ejemplo [HttpGet("nombre")] en el metodo
     //[Route("api/[controller]")]
     [ApiController]
     //Ya que es una API y no usás Views, es mejor que heredes de ControllerBase en vez de Controller
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [ApiVersion("1.0", Deprecated = true)]
     public class CustomersController : ControllerBase // Controller o ControllerBase
     {
         private readonly ICustomersApplication _customersApplication;
@@ -178,7 +180,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
                 return BadRequest("El customerId no puede ser nulo o vacio");
 
             var response = await _customersApplication.GetByIdAsync(customerId);
-            return (response.IsSuccess && response.Data != null) ? Ok(response) : NotFound(response);
+            return response.IsSuccess && response.Data != null ? Ok(response) : NotFound(response);
         }
 
         /// <summary>
@@ -189,7 +191,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var response = await _customersApplication.GetAllAsync();
-            return (response.IsSuccess && response.Data != null) ? Ok(response) : NotFound(response);
+            return response.IsSuccess && response.Data != null ? Ok(response) : NotFound(response);
         }
 
         #endregion

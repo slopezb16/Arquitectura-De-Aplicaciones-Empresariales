@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -12,11 +13,13 @@ using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
+namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V1
 {
     [Authorize]
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")] // QueryStringApiVersionReader o HeaderApiVersionReader
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0", Deprecated = true)]
     public class UsersController : ControllerBase
     {
         private readonly IUsersApplication _usersApplication;

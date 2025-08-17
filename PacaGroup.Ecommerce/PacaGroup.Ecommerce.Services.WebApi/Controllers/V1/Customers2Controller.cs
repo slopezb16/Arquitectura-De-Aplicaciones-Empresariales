@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface;
 using System.Net;
 
-namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
+namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V1
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0", Deprecated = true)]
     public class Customers2Controller : ControllerBase
     {
         private readonly ICustomersApplication2 _customersApplication;
@@ -16,8 +18,8 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers
             _customersApplication = customersApplication;
         }
 
-        [HttpPost("InsertAsync")]
-        public async Task<IActionResult> InsertAsync([FromBody] CustomersDto2 customerDto)
+        [HttpPost("InsertAsync2")]
+        public async Task<IActionResult> InsertAsync2([FromBody] CustomersDto2 customerDto)
         {
             if (customerDto == null)
                 return BadRequest();

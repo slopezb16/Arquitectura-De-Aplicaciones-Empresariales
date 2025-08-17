@@ -1,0 +1,4 @@
+docker build -t pacagroup-ecommerce-api .
+docker stop pacagroup-ecommerce-api
+docker rm pacagroup-ecommerce-api
+docker run -d -p 8080:8080 --name pacagroup-ecommerce-api pacagroup-ecommerce-api

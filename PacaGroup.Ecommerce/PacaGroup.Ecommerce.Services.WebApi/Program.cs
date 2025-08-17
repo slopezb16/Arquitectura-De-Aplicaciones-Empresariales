@@ -1,4 +1,5 @@
-﻿using PacaGroup.Ecommerce.Application.Main;
+﻿using Asp.Versioning.ApiExplorer;
+using PacaGroup.Ecommerce.Application.Main;
 using PacaGroup.Ecommerce.Domain.Core;
 using PacaGroup.Ecommerce.Infrastructure.Repository;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Authentication;
@@ -7,6 +8,7 @@ using PacaGroup.Ecommerce.Services.WebApi.Modules.Injection;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Mapper;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Validator;
+using PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +38,9 @@ builder.Services.AddValidator();
 //Mapper
 builder.Services.AddMapper();
 
+//Versioning
+builder.Services.AddVersioning();
+
 //FluentValidator
 builder.Services.AddValidator();
 
@@ -61,6 +66,7 @@ builder.Services.AddControllers();
 // -------------------------------------
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
+builder.Services.ConfigureOptions<ConfigureSwaggerOptions>(); // 👈 Aquí conectamos Versioning con Swagger
 
 // -------------------------------------
 // 🚀 Build y Middleware
@@ -71,7 +77,18 @@ var app = builder.Build();
 //{
 app.UseDeveloperExceptionPage(); // opcional
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(options =>
+{
+    var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+    // 👇 genera un endpoint Swagger por cada versión de API descubierta
+    foreach (var description in provider.ApiVersionDescriptions)
+    {
+        options.SwaggerEndpoint(
+            $"/swagger/{description.GroupName}/swagger.json",
+            description.GroupName.ToUpperInvariant());
+    }
+});
 //}
 
 // ❌ No hay redirección HTTPS
