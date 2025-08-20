@@ -1,28 +1,27 @@
 ﻿using Dapper;
 using PacaGroup.Ecommerce.Domain.Entity;
+using PacaGroup.Ecommerce.Infrastructure.Data;
 using PacaGroup.Ecommerce.Infrastructure.Interface;
-using PacaGroup.Ecommerce.Transversal.Common;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PacaGroup.Ecommerce.Infrastructure.Repository
 {
     public class UsersRepository : IUsersRepository
     {
-        private readonly IConnectionFactory _connectionFactory;
+        //private readonly IConnectionFactory _connectionFactory;
+        private readonly DapperContext _context;
         // Constructor
-        public UsersRepository(IConnectionFactory connectionFactory)
+        //public UsersRepository(IConnectionFactory connectionFactory)
+        public UsersRepository(DapperContext context)
         {
-            _connectionFactory = connectionFactory;
+            //_connectionFactory = connectionFactory;
+            _context = context;
         }
         // Implementación del método Authenticate
         public Users Authenticate(string userName, string password)
         {
-            using (var connection = _connectionFactory.GetConnection)
+            //using (var connection = _connectionFactory.GetConnection)
+            using (var connection = _context.CreateConnection())
             {
                 var query = "UsersGetByUserAndPassword";
                 var parameters = new DynamicParameters();

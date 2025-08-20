@@ -17,8 +17,9 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Injection
             // Singleton config
             services.AddSingleton<IConfiguration>(configuration);
 
-            // Infra
+            // Infra - usamso ambas conexiones para pruebas
             services.AddSingleton<IConnectionFactory, ConnectionFactory>();
+            services.AddSingleton<DapperContext>();
 
             // Customers
             services.AddScoped<ICustomersApplication, CustomersApplication>();
@@ -35,6 +36,9 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Injection
 
             // Logger
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
+            // Patrones de diseno
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

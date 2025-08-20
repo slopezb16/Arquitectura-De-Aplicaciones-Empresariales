@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PacaGroup.Ecommerce.Infrastructure.Interface
 {
-    public interface IUsersRepository
+    public interface IUsersRepository //: IGenericRepository<Users> // Solo se implementa si se necesitan los otros metodos
     {
         /// <summary>
         /// Metodo de autenticacion de usuarios

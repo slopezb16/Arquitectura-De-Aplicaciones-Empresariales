@@ -3,5 +3,6 @@
     public interface IUnitOfWork : IDisposable
     {
         ICustomersRepository2 Customers { get; }
+        IUsersRepository Users { get; }
     }
 }

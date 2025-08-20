@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.SqlClient;
 namespace PacaGroup.Ecommerce.Infrastructure.Data
 {
+    // Se deja de usar para usar Dapper
+    // Seccion 17
     public class ConnectionFactory : IConnectionFactory
     {
         private readonly IConfiguration _configuration;
