@@ -7,5 +7,8 @@
         Task<bool> DeleteAsync(string customerId);
         Task<T?> GetAsync(string customerId);
         Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllWithPaginationAsync(int pageNumber, int pageSize);
+        Task<int> CountAsync();
+
     }
 }

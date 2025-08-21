@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface;
+using PacaGroup.Ecommerce.Domain.Core;
 using PacaGroup.Ecommerce.Domain.Entity;
 using PacaGroup.Ecommerce.Domain.Interface;
 using PacaGroup.Ecommerce.Transversal.Common;
@@ -120,6 +121,32 @@ namespace PacaGroup.Ecommerce.Application.Main
             }
 
             return response;
-        }      
+        }
+
+        public async Task<ResponsePagination<IEnumerable<CustomersDto>>> GetAllWithPaginationAsync(int pageNumber, int pageSize)
+        {
+            var response = new ResponsePagination<IEnumerable<CustomersDto>>();
+            try
+            {
+                var count = await _CustomersDomain2.CountAsync();
+
+                var customers = await _CustomersDomain2.GetAllWithPaginationAsync(pageNumber, pageSize);
+                response.Data = _mapper.Map<IEnumerable<CustomersDto>>(customers);
+
+                if (response.Data != null)
+                {
+                    response.PageNumber = pageNumber;
+                    response.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+                    response.TotalCount = count;
+                    response.IsSuccess = true;
+                    response.Message = "Consulta Paginada Exitosa!!!";
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+            }
+            return response;
+        }
     }
 }

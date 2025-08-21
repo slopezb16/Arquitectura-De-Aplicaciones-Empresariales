@@ -9,5 +9,7 @@ namespace PacaGroup.Ecommerce.Domain.Interface
         Task<Customers> GetAsync(string customerId);
         Task<bool> InsertAsync(Customers customer);
         Task<bool> UpdateAsync(Customers customer);
+        Task<IEnumerable<Customers>> GetAllWithPaginationAsync(int pageNumber, int pageSize);
+        Task<int> CountAsync();
     }
 }

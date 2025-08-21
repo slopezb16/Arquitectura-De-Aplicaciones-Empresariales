@@ -37,5 +37,15 @@ namespace PacaGroup.Ecommerce.Domain.Core
         {
             return await _unitOfWork.Customers.UpdateAsync(customer);
         }
+
+        public async Task<IEnumerable<Customers>> GetAllWithPaginationAsync(int pageNumber, int pageSize)
+        {
+            return await _unitOfWork.Customers.GetAllWithPaginationAsync(pageNumber, pageSize);
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await _unitOfWork.Customers.CountAsync();
+        }
     }
 }

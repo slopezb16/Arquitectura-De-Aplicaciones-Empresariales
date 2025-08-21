@@ -10,5 +10,6 @@ namespace PacaGroup.Ecommerce.Application.Interface
         Task<Response<bool>> DeleteAsync(string customerId);
         Task<Response<CustomersDto2>> GetAsync(string customerId);
         Task<Response<IEnumerable<CustomersDto2>>> GetAllAsync();
+        Task<ResponsePagination<IEnumerable<CustomersDto>>> GetAllWithPaginationAsync(int pageNumber, int pageSize);
     }
 }

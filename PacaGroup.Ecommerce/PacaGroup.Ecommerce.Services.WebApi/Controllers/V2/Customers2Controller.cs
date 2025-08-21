@@ -87,5 +87,15 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
 
             return StatusCode((int)HttpStatusCode.InternalServerError, response);
         }
+
+        [HttpGet("GetAllWithPaginationAsync")]
+        public async Task<IActionResult> GetAllWithPaginationAsync([FromQuery] int pageNumber, int pageSize)
+        {
+            var response = await _customersApplication.GetAllWithPaginationAsync(pageNumber, pageSize);
+            if (response.IsSuccess)
+                return Ok(response);
+
+            return BadRequest(response.Message);
+        }
     }
 }
