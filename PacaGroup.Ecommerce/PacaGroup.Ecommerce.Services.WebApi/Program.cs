@@ -9,6 +9,7 @@ using PacaGroup.Ecommerce.Services.WebApi.Modules.Feature;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.HealthCheck;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Injection;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Mapper;
+using PacaGroup.Ecommerce.Services.WebApi.Modules.RateLimiter;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Validator;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning;
@@ -88,9 +89,14 @@ builder.Services.AddControllers();
 builder.Services.AddHealthCheck(builder.Configuration);
 
 // -------------------------------------
-// 🔧🧱 WatchDog
+// 🔧 WatchDog
 // -------------------------------------
 builder.Services.AddWatchDog(builder.Configuration);
+
+// -------------------------------------
+// 🧱 Rate limiting
+// -------------------------------------
+builder.Services.AddRatelimiting(builder.Configuration);
 
 // -------------------------------------
 // 🚀 Build y Middleware
@@ -126,6 +132,9 @@ app.UseCors(policyCors);
 
 app.UseAuthentication(); // 👈 Antes que Authorization
 app.UseAuthorization();
+
+// RateLimiting
+app.UseRateLimiter();
 
 app.MapControllers();
 

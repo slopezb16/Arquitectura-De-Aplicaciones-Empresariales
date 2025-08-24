@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface;
 using System.Net;
@@ -9,6 +10,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [ApiVersion("2.0")]
+    [EnableRateLimiting("fixedWindow")]
     public class Customers2Controller : ControllerBase
     {
         private readonly ICustomersApplication2 _customersApplication;
@@ -18,7 +20,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
             _customersApplication = customersApplication;
         }
 
-        [HttpPost("InsertAsync")]
+        [HttpPost("InsertAsync2")]
         public async Task<IActionResult> InsertAsync([FromBody] CustomersDto2 customerDto)
         {
             if (customerDto == null)
@@ -32,7 +34,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
             return StatusCode((int)HttpStatusCode.InternalServerError, response);
         }
 
-        [HttpPut("UpdateAsync/{customerId}")]
+        [HttpPut("UpdateAsync2/{customerId}")]
         public async Task<IActionResult> UpdateAsync([FromRoute] string customerId, [FromBody] CustomersDto2 customerDto)
         {
             if (customerDto == null)
@@ -49,7 +51,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
             return StatusCode((int)HttpStatusCode.InternalServerError, response);
         }
 
-        [HttpDelete("DeleteAsync/{customerId}")]
+        [HttpDelete("DeleteAsync2/{customerId}")]
         public async Task<IActionResult> DeleteAsync([FromRoute] string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
@@ -63,7 +65,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
             return StatusCode((int)HttpStatusCode.InternalServerError, response);
         }
 
-        [HttpGet("GetAsync/{customerId}")]
+        [HttpGet("GetAsync2/{customerId}")]
         public async Task<IActionResult> GetAsync([FromRoute] string customerId)
         {
             if (string.IsNullOrEmpty(customerId))
@@ -77,7 +79,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
             return StatusCode((int)HttpStatusCode.InternalServerError, response);
         }
 
-        [HttpGet("GetAllAsync")]
+        [HttpGet("GetAllAsync2")]
         public async Task<IActionResult> GetAllAsync()
         {
             var response = await _customersApplication.GetAllAsync();
@@ -88,7 +90,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
             return StatusCode((int)HttpStatusCode.InternalServerError, response);
         }
 
-        [HttpGet("GetAllWithPaginationAsync")]
+        [HttpGet("GetAllWithPaginationAsync2")]
         public async Task<IActionResult> GetAllWithPaginationAsync([FromQuery] int pageNumber, int pageSize)
         {
             var response = await _customersApplication.GetAllWithPaginationAsync(pageNumber, pageSize);
