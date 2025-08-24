@@ -12,7 +12,9 @@ using PacaGroup.Ecommerce.Services.WebApi.Modules.Mapper;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Validator;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning;
+using PacaGroup.Ecommerce.Services.WebApi.Modules.WatchDog;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using WatchDog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,6 +88,11 @@ builder.Services.AddControllers();
 builder.Services.AddHealthCheck(builder.Configuration);
 
 // -------------------------------------
+// 🔧🧱 WatchDog
+// -------------------------------------
+builder.Services.AddWatchDog(builder.Configuration);
+
+// -------------------------------------
 // 🚀 Build y Middleware
 // -------------------------------------
 var app = builder.Build();
@@ -132,6 +139,12 @@ app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks
 app.MapHealthChecksUI(options =>
 {
     options.UIPath = "/health-ui";
+});
+
+// WatchDog
+app.UseWatchDog(conf => {
+    conf.WatchPageUsername = builder.Configuration["WatchDog:WatchPageUsername"];
+    conf.WatchPagePassword = builder.Configuration["WatchDog:WatchPagePassword"];
 });
 
 app.Run();
