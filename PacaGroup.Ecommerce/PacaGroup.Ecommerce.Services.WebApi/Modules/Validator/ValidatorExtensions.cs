@@ -9,7 +9,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Validator
         public static IServiceCollection AddValidator(this IServiceCollection services)
         {
             //services.AddTransient<UsersDtoValidator>();
-            services.AddScoped<IValidator<UsersDto>, UsersDtoValidator>();
+            services.AddScoped<IValidator<UserDto>, UsersDtoValidator>();
 
             return services;
         }

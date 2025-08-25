@@ -12,10 +12,11 @@ namespace PacaGroup.Ecommerce.Transversal.Mapper
             // CreateMap<Source, Destination>();
             // Example: CreateMap<ProductDto, ProductEntity>();
 
-            CreateMap<Customers, CustomersDto>().ReverseMap();
+            CreateMap<Customer, CustomerDto>().ReverseMap();
+            CreateMap<Customer, CustomerDto2>().ReverseMap();
 
             // El que falta:
-            CreateMap<Users, UsersDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
 
             // Si los casos de uso son diferentes, puedes usar .ForMember para mapear propiedades específicas
             //CreateMap<Customers, CustomersDto>().ReverseMap()

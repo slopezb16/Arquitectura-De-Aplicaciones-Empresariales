@@ -1,11 +1,4 @@
-﻿using PacaGroup.Ecommerce.Application.Interface;
-using PacaGroup.Ecommerce.Application.Main;
-using PacaGroup.Ecommerce.Domain.Core;
-using PacaGroup.Ecommerce.Domain.Interface;
-using PacaGroup.Ecommerce.Infrastructure.Data;
-using PacaGroup.Ecommerce.Infrastructure.Interface;
-using PacaGroup.Ecommerce.Infrastructure.Repository;
-using PacaGroup.Ecommerce.Transversal.Common;
+﻿using PacaGroup.Ecommerce.Transversal.Common;
 using PacaGroup.Ecommerce.Transversal.Logging;
 
 namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Injection
@@ -18,27 +11,27 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Injection
             services.AddSingleton<IConfiguration>(configuration);
 
             // Infra - usamso ambas conexiones para pruebas
-            services.AddSingleton<IConnectionFactory, ConnectionFactory>();
-            services.AddSingleton<DapperContext>();
+            //services.AddSingleton<IConnectionFactory, ConnectionFactory>();
+            //services.AddSingleton<DapperContext>();
 
             // Customers
-            services.AddScoped<ICustomersApplication, CustomersApplication>();
-            services.AddScoped<ICustomersApplication2, CustomersApplication2>();
-            services.AddScoped<ICustomersDomain, CustomersDomain>();
-            services.AddScoped<ICustomersDomain2, CustomersDomain2>();
-            services.AddScoped<ICustomersRepository, CustomersRepository>();
-            services.AddScoped<ICustomersRepository2, CustomersRepository2>();
+            //services.AddScoped<ICustomersApplication, CustomersApplication>();
+            //services.AddScoped<ICustomersApplication2, CustomersApplication2>();
+            //services.AddScoped<ICustomersDomain, CustomersDomain>();
+            //services.AddScoped<ICustomersDomain2, CustomersDomain2>();
+            //services.AddScoped<ICustomersRepository, CustomersRepository>();
+            //services.AddScoped<ICustomersRepository2, CustomersRepository2>();
 
             // Users
-            services.AddScoped<IUsersApplication, UsersApplication>();
-            services.AddScoped<IUsersDomain, UsersDomain>();
-            services.AddScoped<IUsersRepository, UsersRepository>();
+            //services.AddScoped<IUsersApplication, UsersApplication>();
+            //services.AddScoped<IUsersDomain, UsersDomain>();
+            //services.AddScoped<IUsersRepository, UsersRepository>();
 
             // Logger
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             // Patrones de diseno
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

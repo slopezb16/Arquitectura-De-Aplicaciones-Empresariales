@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PacaGroup.Ecommerce.Application.DTO;
-using PacaGroup.Ecommerce.Application.Interface;
+using PacaGroup.Ecommerce.Application.Interface.UseCases;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,7 +39,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         /// <param name="customerDto">Datos del cliente a insertar.</param>
         /// <returns>Resultado de la operación.</returns>
         [HttpPost]
-        public IActionResult Insert([FromBody] CustomersDto customerDto)
+        public IActionResult Insert([FromBody] CustomerDto customerDto)
         {
             if (customerDto == null)
                 return BadRequest("El objeto no puede ser nulo");
@@ -57,7 +57,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         /// <param name="customerDto">Datos del cliente a actualizar.</param>
         /// <returns>Resultado de la operación.</returns>
         [HttpPut]
-        public IActionResult Update([FromBody] CustomersDto customerDto)
+        public IActionResult Update([FromBody] CustomerDto customerDto)
         {
             if (customerDto == null)
                 return BadRequest("El objeto no puede ser nulo");
@@ -129,7 +129,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         /// <param name="customerDto">Datos del cliente a insertar.</param>
         /// <returns>Resultado de la operación.</returns>
         [HttpPost("async")]
-        public async Task<IActionResult> InsertAsync([FromBody] CustomersDto customerDto)
+        public async Task<IActionResult> InsertAsync([FromBody] CustomerDto customerDto)
         {
             if (customerDto == null)
                 return BadRequest("El objeto no puede ser nulo");
@@ -144,7 +144,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         /// <param name="customerDto">Datos del cliente a actualizar.</param>
         /// <returns>Resultado de la operación.</returns>
         [HttpPut("async")]
-        public async Task<IActionResult> UpdateAsync([FromBody] CustomersDto customerDto)
+        public async Task<IActionResult> UpdateAsync([FromBody] CustomerDto customerDto)
         {
             if (customerDto == null)
                 return BadRequest("El objeto no puede ser nulo");

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PacaGroup.Ecommerce.Application.DTO;
-using PacaGroup.Ecommerce.Application.Interface;
+using PacaGroup.Ecommerce.Application.Interface.UseCases;
 using PacaGroup.Ecommerce.Services.WebApi.Helpers;
 using PacaGroup.Ecommerce.Transversal.Common;
 using System.IdentityModel.Tokens.Jwt;
@@ -37,7 +37,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         /// Autentica a un usuario en el sistema y genera un token JWT si las credenciales son válidas.
         /// </summary>
         /// <remarks>
-        /// Este endpoint permite el acceso anónimo y recibe un objeto <see cref="UsersDto"/> 
+        /// Este endpoint permite el acceso anónimo y recibe un objeto <see cref="UserDto"/> 
         /// con el nombre de usuario y contraseña.  
         /// Si la autenticación es exitosa, se devuelve un objeto de respuesta que incluye 
         /// los datos del usuario y un token JWT.
@@ -49,7 +49,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         [AllowAnonymous]
         [HttpPost]
         // GET: api/<UsersController>
-        public IActionResult Authenticate([FromBody] UsersDto usersDto)
+        public IActionResult Authenticate([FromBody] UserDto usersDto)
         {
             var response = _usersApplication.Authenticate(usersDto.UserName, usersDto.Password);
             if (response.IsSuccess)
@@ -94,7 +94,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         //    return tokenHandler.WriteToken(token);
         //}
 
-        private string BuildToken(Response<UsersDto> usersDto)
+        private string BuildToken(Response<UserDto> usersDto)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettingJWT.Key);

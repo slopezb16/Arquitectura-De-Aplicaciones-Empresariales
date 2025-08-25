@@ -1,0 +1,24 @@
+﻿using PacaGroup.Ecommerce.Application.Interface.Persistense;
+using PacaGroup.Ecommerce.Domain.Entity;
+
+namespace PacaGroup.Ecommerce.Application.UseCases
+{
+    public class UsersDomain : IUsersDomain
+    {
+        //private readonly IUsersRepository _usersRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        // Constructor
+        //public UsersDomain(IUsersRepository usersRepository)
+        public UsersDomain(IUnitOfWork unitOfWork)
+        {
+            //_usersRepository = usersRepository;
+            _unitOfWork = unitOfWork;
+        }
+        // Implementación del método Authenticate
+        public User Authenticate(string userName, string password)
+        {
+            //return _usersRepository.Authenticate(userName, password);
+            return _unitOfWork.Users.Authenticate(userName, password);
+        }
+    }
+}

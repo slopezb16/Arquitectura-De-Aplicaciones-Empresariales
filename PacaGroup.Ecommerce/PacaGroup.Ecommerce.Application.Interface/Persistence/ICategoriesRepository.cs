@@ -1,0 +1,13 @@
+﻿using PacaGroup.Ecommerce.Domain.Entity;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PacaGroup.Ecommerce.Application.Interface.Persistence
+{
+    public interface ICategoriesRepository
+    {
+        Task<IEnumerable<Category>> GetAll();
+    }
+}

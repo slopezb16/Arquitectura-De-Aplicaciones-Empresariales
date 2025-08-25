@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using PacaGroup.Ecommerce.Application.DTO;
-using PacaGroup.Ecommerce.Application.Interface;
+using PacaGroup.Ecommerce.Application.Interface.UseCases;
 using System.Net;
 
 namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
@@ -21,7 +21,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         }
 
         [HttpPost("InsertAsync2")]
-        public async Task<IActionResult> InsertAsync([FromBody] CustomersDto2 customerDto)
+        public async Task<IActionResult> InsertAsync([FromBody] CustomerDto2 customerDto)
         {
             if (customerDto == null)
                 return BadRequest();
@@ -35,7 +35,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         }
 
         [HttpPut("UpdateAsync2/{customerId}")]
-        public async Task<IActionResult> UpdateAsync([FromRoute] string customerId, [FromBody] CustomersDto2 customerDto)
+        public async Task<IActionResult> UpdateAsync([FromRoute] string customerId, [FromBody] CustomerDto2 customerDto)
         {
             if (customerDto == null)
                 return BadRequest();

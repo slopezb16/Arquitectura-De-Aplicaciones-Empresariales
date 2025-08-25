@@ -22,9 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PacaGroup.Ecommerce.Application.Main\PacaGroup.Ecommerce.Application.Main.csproj" />
+    <ProjectReference Include="..\PacaGroup.Ecommerce.Application.UseCases\PacaGroup.Ecommerce.Application.UseCases.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.Validator\PacaGroup.Ecommerce.Application.Validator.csproj" />
-    <ProjectReference Include="..\PacaGroup.Ecommerce.Domain.Interface\PacaGroup.Ecommerce.Domain.Interface.csproj" />
   </ItemGroup>
 
   <ItemGroup>

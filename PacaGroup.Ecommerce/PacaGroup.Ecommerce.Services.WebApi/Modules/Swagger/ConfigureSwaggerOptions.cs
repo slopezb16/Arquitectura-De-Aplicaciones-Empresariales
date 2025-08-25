@@ -40,7 +40,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger
                 Title = "Ecommerce API",
                 Version = description.ApiVersion.ToString(),
                 Description = "API para gestión de clientes y usuarios en PacaGroup",
-                TermsOfService = new Uri("https://pacagroup.com/terms0"), //Prueba
+                TermsOfService = new Uri("https://PacaGroup.com/terms0"), //Prueba
                 Contact = new OpenApiContact
                 {
                     Name = "Santiago López Botero",
@@ -50,7 +50,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger
                 License = new OpenApiLicense
                 {
                     Name = "Use under LICX",
-                    Url = new Uri("https://pacagroup.com/licence0") //Prueba
+                    Url = new Uri("https://PacaGroup.com/licence0") //Prueba
                 }
             };
 

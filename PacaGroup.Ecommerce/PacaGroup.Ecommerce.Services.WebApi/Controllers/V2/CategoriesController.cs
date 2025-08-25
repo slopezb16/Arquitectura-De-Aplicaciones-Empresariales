@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using PacaGroup.Ecommerce.Application.Interface;
+using PacaGroup.Ecommerce.Application.Interface.UseCases;
 
 namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
 {

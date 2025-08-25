@@ -1,9 +1,5 @@
 ﻿using Asp.Versioning.ApiExplorer;
 using HealthChecks.UI.Client;
-using Microsoft.Extensions.Options;
-using PacaGroup.Ecommerce.Application.Main;
-using PacaGroup.Ecommerce.Domain.Core;
-using PacaGroup.Ecommerce.Infrastructure.Repository;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Feature;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.HealthCheck;
@@ -14,8 +10,9 @@ using PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Validator;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.WatchDog;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using WatchDog;
+using PacaGroup.Ecommerce.Persistence;
+using PacaGroup.Ecommerce.Application.UseCases;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +25,7 @@ var builder = WebApplication.CreateBuilder(args);
 // -------------------------------------
 
 //Capa de dominio
-builder.Services.addDomainServices();
+//builder.Services.addDomainServices();
 
 //Capa de infrastrctura
 builder.Services.AddInfrastructureServices();
