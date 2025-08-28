@@ -52,7 +52,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
                 .Setup(v => v.Validate(It.IsAny<UserDto>()))
                 .Returns(new ValidationResult());
 
-            var domainUser = new PacaGroup.Ecommerce.Domain.Entity.User
+            var domainUser = new PacaGroup.Ecommerce.Domain.Entities.User
             {
                 userName = "admin",
                 Password = "123"

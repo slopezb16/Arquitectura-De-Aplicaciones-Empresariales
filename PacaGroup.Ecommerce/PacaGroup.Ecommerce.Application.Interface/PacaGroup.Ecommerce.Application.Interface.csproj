@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.DTO\PacaGroup.Ecommerce.Application.DTO.csproj" />
-    <ProjectReference Include="..\PacaGroup.Ecommerce.Domain.Entity\PacaGroup.Ecommerce.Domain.Entity.csproj" />
+    <ProjectReference Include="..\PacaGroup.Ecommerce.Domain\PacaGroup.Ecommerce.Domain.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Common\PacaGroup.Ecommerce.Transversal.Common.csproj" />
   </ItemGroup>
 

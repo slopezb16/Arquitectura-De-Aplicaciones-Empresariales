@@ -1,4 +1,4 @@
-﻿using PacaGroup.Ecommerce.Domain.Entity;
+﻿using PacaGroup.Ecommerce.Domain.Entities;
 
 namespace PacaGroup.Ecommerce.Application.Interface.Persistense
 {

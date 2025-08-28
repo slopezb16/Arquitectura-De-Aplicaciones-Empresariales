@@ -1,8 +1,4 @@
-﻿using PacaGroup.Ecommerce.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PacaGroup.Ecommerce.Domain.Entities;
 
 namespace PacaGroup.Ecommerce.Application.Interface.Persistence
 {

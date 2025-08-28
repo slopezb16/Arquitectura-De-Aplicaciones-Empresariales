@@ -1,4 +1,4 @@
-﻿using PacaGroup.Ecommerce.Domain.Entity;
+﻿using PacaGroup.Ecommerce.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

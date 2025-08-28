@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PacaGroup.Ecommerce.Application.DTO;
-using PacaGroup.Ecommerce.Domain.Entity;
+using PacaGroup.Ecommerce.Domain.Entities;
 
 namespace PacaGroup.Ecommerce.Application.Main.Commons
 {

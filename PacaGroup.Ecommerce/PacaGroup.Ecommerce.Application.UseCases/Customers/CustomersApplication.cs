@@ -2,7 +2,7 @@
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface.Persistense;
 using PacaGroup.Ecommerce.Application.Interface.UseCases;
-using PacaGroup.Ecommerce.Domain.Entity;
+using PacaGroup.Ecommerce.Domain.Entities;
 using PacaGroup.Ecommerce.Transversal.Common;
 
 namespace PacaGroup.Ecommerce.Application.UseCases.Customers

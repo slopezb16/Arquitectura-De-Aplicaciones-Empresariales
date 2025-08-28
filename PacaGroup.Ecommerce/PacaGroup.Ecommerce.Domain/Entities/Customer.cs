@@ -1,4 +1,4 @@
-﻿namespace PacaGroup.Ecommerce.Domain.Entity
+﻿namespace PacaGroup.Ecommerce.Domain.Entities
 {
     public class Customer
     {

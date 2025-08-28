@@ -1,4 +1,4 @@
-<Project Sdk="MSTest.Sdk/3.6.4">
+﻿<Project Sdk="MSTest.Sdk/3.6.4">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.UseCases\PacaGroup.Ecommerce.Application.UseCases.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.Validator\PacaGroup.Ecommerce.Application.Validator.csproj" />
+    <ProjectReference Include="..\PacaGroup.Ecommerce.Domain\PacaGroup.Ecommerce.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

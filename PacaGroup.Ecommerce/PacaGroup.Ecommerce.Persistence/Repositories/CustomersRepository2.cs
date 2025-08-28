@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using PacaGroup.Ecommerce.Application.Interface.Persistense;
-using PacaGroup.Ecommerce.Domain.Entity;
+using PacaGroup.Ecommerce.Domain.Entities;
 using PacaGroup.Ecommerce.Persistence.Contexts;
 using System.Data;
 

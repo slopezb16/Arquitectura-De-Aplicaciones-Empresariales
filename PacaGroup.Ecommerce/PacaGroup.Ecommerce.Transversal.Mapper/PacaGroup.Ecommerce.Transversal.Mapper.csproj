@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.DTO\PacaGroup.Ecommerce.Application.DTO.csproj" />
-    <ProjectReference Include="..\PacaGroup.Ecommerce.Domain.Entity\PacaGroup.Ecommerce.Domain.Entity.csproj" />
+    <ProjectReference Include="..\PacaGroup.Ecommerce.Domain\PacaGroup.Ecommerce.Domain.csproj" />
   </ItemGroup>
 
 </Project>

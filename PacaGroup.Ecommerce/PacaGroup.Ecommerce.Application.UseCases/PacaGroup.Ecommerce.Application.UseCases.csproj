@@ -15,7 +15,6 @@
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.DTO\PacaGroup.Ecommerce.Application.DTO.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.Interface\PacaGroup.Ecommerce.Application.Interface.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Application.Validator\PacaGroup.Ecommerce.Application.Validator.csproj" />
-    <ProjectReference Include="..\PacaGroup.Ecommerce.Domain.Entity\PacaGroup.Ecommerce.Domain.Entity.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Persistence\PacaGroup.Ecommerce.Persistence.csproj" />
     <ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Common\PacaGroup.Ecommerce.Transversal.Common.csproj" />
   </ItemGroup>

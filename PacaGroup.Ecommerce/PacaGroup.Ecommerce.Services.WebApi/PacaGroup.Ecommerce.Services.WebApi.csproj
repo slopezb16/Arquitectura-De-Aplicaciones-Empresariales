@@ -28,6 +28,10 @@
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.8">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
@@ -39,8 +43,10 @@
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Application.DTO\PacaGroup.Ecommerce.Application.DTO.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Application.Interface\PacaGroup.Ecommerce.Application.Interface.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Application.UseCases\PacaGroup.Ecommerce.Application.UseCases.csproj" />
-		<ProjectReference Include="..\PacaGroup.Ecommerce.Domain.Entity\PacaGroup.Ecommerce.Domain.Entity.csproj" />
+		<ProjectReference Include="..\PacaGroup.Ecommerce.Application.Validator\PacaGroup.Ecommerce.Application.Validator.csproj" />
+		<ProjectReference Include="..\PacaGroup.Ecommerce.Domain\PacaGroup.Ecommerce.Domain.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Persistence\PacaGroup.Ecommerce.Persistence.csproj" />
+		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Common\PacaGroup.Ecommerce.Transversal.Common.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Logging\PacaGroup.Ecommerce.Transversal.Logging.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Mapper\PacaGroup.Ecommerce.Transversal.Mapper.csproj" />
 	</ItemGroup>

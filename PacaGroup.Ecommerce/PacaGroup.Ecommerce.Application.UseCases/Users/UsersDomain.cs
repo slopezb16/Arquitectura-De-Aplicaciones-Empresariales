@@ -1,5 +1,5 @@
 ﻿using PacaGroup.Ecommerce.Application.Interface.Persistense;
-using PacaGroup.Ecommerce.Domain.Entity;
+using PacaGroup.Ecommerce.Domain.Entities;
 
 namespace PacaGroup.Ecommerce.Application.UseCases
 {

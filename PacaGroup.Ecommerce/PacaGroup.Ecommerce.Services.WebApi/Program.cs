@@ -28,7 +28,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.addDomainServices();
 
 //Capa de infrastrctura
-builder.Services.AddInfrastructureServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 //Capa de aplicaciones
 builder.Services.AddApplicationServices();
