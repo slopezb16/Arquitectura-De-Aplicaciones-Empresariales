@@ -7,17 +7,20 @@ namespace PacaGroup.Ecommerce.Application.Interface.Persistense
         #region Metodos Sincronos
         bool Insert(T entity);
         bool Update(T entity);
-        bool Delete(string CustumerId);
-        Customer GetById(string ustumerId);
+        bool Delete(string id);
+
+        Customer GetById(string id);
         IEnumerable<Customer> GetAll();
+        IEnumerable<T> GetAllWithPagination(int pageNumber, int pageSize);
+        int Count();
         #endregion
 
         Task<bool> InsertAsync(T entity);
         Task<bool> UpdateAsync(T entity);
-        Task<bool> DeleteAsync(string customerId);
-        Task<T?> GetAsync(string customerId);
+        Task<bool> DeleteAsync(string id);
+
+        Task<T?> GetByIdAsync(string id);
         Task<IEnumerable<T>> GetAllAsync();
-        Task<T> GetByIdAsync(string ustumerId);
         Task<IEnumerable<T>> GetAllWithPaginationAsync(int pageNumber, int pageSize);
         Task<int> CountAsync();
 

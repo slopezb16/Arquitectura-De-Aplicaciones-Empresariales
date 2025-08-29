@@ -4,10 +4,8 @@ using PacaGroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Feature;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.HealthCheck;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Injection;
-using PacaGroup.Ecommerce.Services.WebApi.Modules.Mapper;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.RateLimiter;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger;
-using PacaGroup.Ecommerce.Services.WebApi.Modules.Validator;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.WatchDog;
 using WatchDog;
@@ -36,7 +34,7 @@ builder.Services.AddApplicationServices();
 // -------------------------------------
 // 🌍 AddMapper
 // -------------------------------------
-builder.Services.AddMapper();
+//builder.Services.AddMapper();
 
 // -------------------------------------
 // 🌍 CORS
@@ -71,7 +69,7 @@ builder.Services.AddSwagger();
 // 🌍 AddValidator FluentValidator
 // -------------------------------------
 //FluentValidator
-builder.Services.AddValidator();
+//builder.Services.AddValidator();
 
 // -------------------------------------
 // Agregar controladores

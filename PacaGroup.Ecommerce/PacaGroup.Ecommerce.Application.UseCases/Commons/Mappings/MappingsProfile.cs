@@ -2,17 +2,17 @@
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Domain.Entities;
 
-namespace PacaGroup.Ecommerce.Application.Main.Commons
+namespace PacaGroup.Ecommerce.Application.UseCases.Commons.Mappings
 {
     internal class MappingsProfile : Profile
     {
         public MappingsProfile()
         {
+            CreateMap<Customer, CustomerDto>().ReverseMap();
             CreateMap<Customer, CustomerDto2>().ReverseMap();
-
-            // El que falta:
-            CreateMap<User, UserDto>();
-            CreateMap<UserDto, User>();
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Discount, DiscountDto>().ReverseMap();
 
             //CreateMap<Customer, CustomerDto>().ReverseMap()
             //.ForMember(destination => destination.CustomerId, source => source.MapFrom(src => src.CustomerId))

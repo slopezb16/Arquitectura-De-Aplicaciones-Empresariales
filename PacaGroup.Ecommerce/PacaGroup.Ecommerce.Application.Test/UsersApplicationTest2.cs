@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PacaGroup.Ecommerce.Application.Interface.UseCases;
-using PacaGroup.Ecommerce.Application.Main;
 using PacaGroup.Ecommerce.Application.UseCases;
 using PacaGroup.Ecommerce.Application.Validator;
 

@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicio", "Servicio", "{F4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacaGroup.Ecommerce.Application.DTO", "PacaGroup.Ecommerce.Application.DTO\PacaGroup.Ecommerce.Application.DTO.csproj", "{ED616F54-DAD6-4C88-9A54-C145ACFE8F78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacaGroup.Ecommerce.Transversal.Mapper", "PacaGroup.Ecommerce.Transversal.Mapper\PacaGroup.Ecommerce.Transversal.Mapper.csproj", "{155F0027-46D7-486C-B7F3-654089B45E8A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacaGroup.Ecommerce.Application.Interface", "PacaGroup.Ecommerce.Application.Interface\PacaGroup.Ecommerce.Application.Interface.csproj", "{480DB04E-D6E4-4DD1-8300-9C5330857BF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacaGroup.Ecommerce.Services.WebApi", "PacaGroup.Ecommerce.Services.WebApi\PacaGroup.Ecommerce.Services.WebApi.csproj", "{4EF2A944-B1E0-48EF-9515-3D1C5A2B20A1}"
@@ -52,10 +50,6 @@ Global
 		{ED616F54-DAD6-4C88-9A54-C145ACFE8F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED616F54-DAD6-4C88-9A54-C145ACFE8F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED616F54-DAD6-4C88-9A54-C145ACFE8F78}.Release|Any CPU.Build.0 = Release|Any CPU
-		{155F0027-46D7-486C-B7F3-654089B45E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{155F0027-46D7-486C-B7F3-654089B45E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{155F0027-46D7-486C-B7F3-654089B45E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{155F0027-46D7-486C-B7F3-654089B45E8A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{480DB04E-D6E4-4DD1-8300-9C5330857BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{480DB04E-D6E4-4DD1-8300-9C5330857BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{480DB04E-D6E4-4DD1-8300-9C5330857BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -98,7 +92,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{ED616F54-DAD6-4C88-9A54-C145ACFE8F78} = {7CC702AF-3B45-4C98-806D-1DC32E8657BD}
-		{155F0027-46D7-486C-B7F3-654089B45E8A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{480DB04E-D6E4-4DD1-8300-9C5330857BF4} = {7CC702AF-3B45-4C98-806D-1DC32E8657BD}
 		{4EF2A944-B1E0-48EF-9515-3D1C5A2B20A1} = {F49FF13F-0E64-4C10-B988-3752DF1284EE}
 		{84A14867-549C-4ACC-8E34-A23E84E7FC8C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}

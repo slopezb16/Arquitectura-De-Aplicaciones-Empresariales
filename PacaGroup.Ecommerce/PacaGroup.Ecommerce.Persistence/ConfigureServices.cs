@@ -36,6 +36,9 @@ namespace PacaGroup.Ecommerce.Persistence
             //services.AddScoped<IUsersDomain, UsersDomain>();
             services.AddScoped<IUsersRepository, UsersRepository>();
 
+            // Discount
+            services.AddScoped<IDiscountRepository, DiscountRepository>();
+
             // Patrones de diseno
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

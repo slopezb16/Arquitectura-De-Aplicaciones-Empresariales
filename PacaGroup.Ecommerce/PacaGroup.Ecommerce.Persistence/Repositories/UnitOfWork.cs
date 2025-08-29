@@ -1,4 +1,6 @@
-﻿using PacaGroup.Ecommerce.Application.Interface.Persistense;
+﻿using PacaGroup.Ecommerce.Application.Interface.Persistence;
+using PacaGroup.Ecommerce.Application.Interface.Persistense;
+using PacaGroup.Ecommerce.Persistence.Contexts;
 
 namespace PacaGroup.Ecommerce.Persistence.Repositories
 {
@@ -8,10 +10,21 @@ namespace PacaGroup.Ecommerce.Persistence.Repositories
 
         public IUsersRepository Users { get; }
 
-        public UnitOfWork(ICustomersRepository2 customers, IUsersRepository users)
+        public IDiscountRepository Discounts { get; }
+
+        private readonly ApplicationDbContext _applicationDbContext;
+
+        public UnitOfWork(ICustomersRepository2 customers, IUsersRepository users, IDiscountRepository discounts, ApplicationDbContext applicationDbContext)
         {
             Customers = customers;
             Users = users;
+            Discounts = discounts;
+            _applicationDbContext = applicationDbContext;
+        }
+
+        public async Task<int> Save(CancellationToken cancellationToken)
+        {
+            return await _applicationDbContext.SaveChangesAsync(cancellationToken);
         }
 
         public void Dispose()

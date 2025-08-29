@@ -147,5 +147,14 @@ namespace PacaGroup.Ecommerce.Persistence.Repositories
             return count;
         }
 
+        public IEnumerable<Customer> GetAllWithPagination(int pageNumber, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Count()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

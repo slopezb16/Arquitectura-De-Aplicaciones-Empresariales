@@ -48,7 +48,6 @@
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Persistence\PacaGroup.Ecommerce.Persistence.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Common\PacaGroup.Ecommerce.Transversal.Common.csproj" />
 		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Logging\PacaGroup.Ecommerce.Transversal.Logging.csproj" />
-		<ProjectReference Include="..\PacaGroup.Ecommerce.Transversal.Mapper\PacaGroup.Ecommerce.Transversal.Mapper.csproj" />
 	</ItemGroup>
 
 </Project>

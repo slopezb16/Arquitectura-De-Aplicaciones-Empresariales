@@ -85,7 +85,7 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Customers
             var response = new Response<CustomerDto2>();
             try
             {
-                var Customers = await _unitOfWork.Customers.GetAsync(CustomersId);
+                var Customers = await _unitOfWork.Customers.GetByIdAsync(CustomersId);
                 response.Data = _mapper.Map<CustomerDto2>(Customers);
                 if (response.Data != null)
                 {

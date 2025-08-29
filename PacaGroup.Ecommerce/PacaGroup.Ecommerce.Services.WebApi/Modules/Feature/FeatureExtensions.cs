@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PacaGroup.Ecommerce.Services.WebApi.Helpers;
+using System.Text.Json.Serialization;
 
 namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Feature
 {
@@ -24,6 +25,13 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Feature
                         .AllowAnyHeader()
                         .AllowCredentials(); // <- Solo si lo necesitas
                 });
+            });
+
+            services.AddMvc();
+            services.AddControllers().AddJsonOptions(opts =>
+            {
+                var enumConverter = new JsonStringEnumConverter();
+                opts.JsonSerializerOptions.Converters.Add(enumConverter);
             });
 
             return services;
