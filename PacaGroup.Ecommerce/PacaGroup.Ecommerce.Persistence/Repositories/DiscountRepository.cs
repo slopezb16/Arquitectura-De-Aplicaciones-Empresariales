@@ -3,6 +3,7 @@ using PacaGroup.Ecommerce.Application.Interface.Persistence;
 using PacaGroup.Ecommerce.Application.Interface.Persistense;
 using PacaGroup.Ecommerce.Domain.Entities;
 using PacaGroup.Ecommerce.Persistence.Contexts;
+using PacaGroup.Ecommerce.Persistence.Mocks;
 
 namespace PacaGroup.Ecommerce.Persistence.Repositories
 {
@@ -101,24 +102,41 @@ namespace PacaGroup.Ecommerce.Persistence.Repositories
                 SingleOrDefaultAsync(x => x.Id.Equals(id), cancellationToken);
         }
 
-        public Task<IEnumerable<Discount>> GetAllWithPaginationAsync(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Discount>> GetAllWithPaginationAsync(int pageNumber, int pageSize)
         {
-            throw new NotImplementedException();
+            var faker = new DiscountGetAllWithPaginationAsyncBogusConfig();
+            var result = await Task.Run(() => faker.Generate(1000));
+
+            return result.Skip((pageNumber - 1) * pageSize).Take(pageSize);
         }
 
-        public Task<int> CountAsync()
+        public async Task<int> CountAsync()
         {
-            throw new NotImplementedException();
+            return await Task.Run(() => 1000);
         }
 
-        public Task<Discount> GetByIdAsync(string id)
+        public async Task<Discount> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            // Usamos Bogus en vez de DB (mock)
+            var faker = new DiscountGetAllWithPaginationAsyncBogusConfig();
+            var result = await Task.Run(() => faker.Generate(1000));
+
+            if (int.TryParse(id, out int discountId))
+            {
+                return result.FirstOrDefault(d => d.Id == discountId);
+            }
+
+            return null;
         }
-        public Task<IEnumerable<Discount>> GetAllAsync()
+
+        public async Task<IEnumerable<Discount>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var faker = new DiscountGetAllWithPaginationAsyncBogusConfig();
+            var result = await Task.Run(() => faker.Generate(1000));
+
+            return result;
         }
+
         #endregion
 
         Customer IGenericRepository<Discount>.GetById(string id)
