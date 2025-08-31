@@ -11,6 +11,7 @@ using PacaGroup.Ecommerce.Services.WebApi.Modules.WatchDog;
 using WatchDog;
 using PacaGroup.Ecommerce.Persistence;
 using PacaGroup.Ecommerce.Application.UseCases;
+using Pacagroup.Ecommerce.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +27,8 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.addDomainServices();
 
 //Capa de infrastrctura
-builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddInfrastructureServices();
 
 //Capa de aplicaciones
 builder.Services.AddApplicationServices();

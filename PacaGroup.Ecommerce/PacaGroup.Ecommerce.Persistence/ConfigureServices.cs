@@ -12,7 +12,7 @@ namespace PacaGroup.Ecommerce.Persistence
 {
     public static class ConfigureServices
     {
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             // Base Migrations
             services.AddDbContext<ApplicationDbContext>(options =>
