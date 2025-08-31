@@ -107,16 +107,27 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 
+var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
-    var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-
     // 👇 genera un endpoint Swagger por cada versión de API descubierta
     foreach (var description in provider.ApiVersionDescriptions)
     {
         options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
             description.GroupName.ToUpperInvariant());
+    }
+});
+
+//ReDoc
+//Documentacion interactiva
+app.UseReDoc(options =>
+{
+    foreach (var description in provider.ApiVersionDescriptions)
+    {
+        options.DocumentTitle = "PacaGroup Technology Services API Market";
+        options.SpecUrl = $"/swagger/{description.GroupName}/swagger.json";
     }
 });
 
