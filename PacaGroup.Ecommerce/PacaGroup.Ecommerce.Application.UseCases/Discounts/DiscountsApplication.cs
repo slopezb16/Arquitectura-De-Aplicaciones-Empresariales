@@ -7,6 +7,7 @@ using PacaGroup.Ecommerce.Application.Validator;
 using PacaGroup.Ecommerce.Domain.Entities;
 using PacaGroup.Ecommerce.Domain.Events;
 using PacaGroup.Ecommerce.Transversal.Common;
+using System.Text.Json;
 
 namespace PacaGroup.Ecommerce.Application.UseCases.Discounts
 {
@@ -16,15 +17,16 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Discounts
         private readonly IMapper _mapper;
         private readonly IEventBus _eventBus;
         private readonly DiscountDtoValidator _discountDtoValidator;
+        private readonly INotification _notification;
 
-        public DiscountsApplication(IUnitOfWork unitOfWork, IMapper mapper, IEventBus eventBus, DiscountDtoValidator discountDtoValidator)
+        public DiscountsApplication(IUnitOfWork unitOfWork, IMapper mapper, IEventBus eventBus, DiscountDtoValidator discountDtoValidator, INotification notification)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _eventBus = eventBus;
             _discountDtoValidator = discountDtoValidator;
+            _notification = notification;
         }
-
         public async Task<Response<bool>> Create(DiscountDto discountDto, CancellationToken cancellationToken = default)
         {
             var response = new Response<bool>();
@@ -49,11 +51,15 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Discounts
                     /* Publicamos el evento */
                     var discountCreatedEvent = _mapper.Map<DiscountCreatedEvent>(discount);
                     _eventBus.Publish(discountCreatedEvent);
+
+                    /* Enviamos correo*/
+                    await _notification.SendMailAsync(response.Message, JsonSerializer.Serialize(discount), cancellationToken);
                 }
             }
             catch (Exception e)
             {
                 response.Message = e.Message;
+                await _notification.SendMailAsync(response.Message, JsonSerializer.Serialize(response), cancellationToken);
             }
 
             return response;
