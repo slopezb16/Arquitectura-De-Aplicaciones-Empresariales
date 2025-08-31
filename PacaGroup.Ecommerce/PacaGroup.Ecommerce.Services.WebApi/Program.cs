@@ -7,8 +7,6 @@ using PacaGroup.Ecommerce.Services.WebApi.Modules.Injection;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.RateLimiter;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning;
-using PacaGroup.Ecommerce.Services.WebApi.Modules.WatchDog;
-using WatchDog;
 using PacaGroup.Ecommerce.Persistence;
 using PacaGroup.Ecommerce.Application.UseCases;
 using Pacagroup.Ecommerce.Infrastructure;
@@ -86,9 +84,9 @@ builder.Services.AddControllers();
 builder.Services.AddHealthCheck(builder.Configuration);
 
 // -------------------------------------
-// 🔧 WatchDog
+// 🔧 WatchDog // Deprecado
 // -------------------------------------
-builder.Services.AddWatchDog(builder.Configuration);
+//builder.Services.AddWatchDog(builder.Configuration);
 
 // -------------------------------------
 // 🧱 Rate limiting
@@ -158,10 +156,10 @@ app.MapHealthChecksUI(options =>
     options.UIPath = "/health-ui";
 });
 
-// WatchDog
-app.UseWatchDog(conf => {
-    conf.WatchPageUsername = builder.Configuration["WatchDog:WatchPageUsername"];
-    conf.WatchPagePassword = builder.Configuration["WatchDog:WatchPagePassword"];
-});
+// WatchDog // Deprecado
+//app.UseWatchDog(conf => {
+//    conf.WatchPageUsername = builder.Configuration["WatchDog:WatchPageUsername"];
+//    conf.WatchPagePassword = builder.Configuration["WatchDog:WatchPagePassword"];
+//});
 
 app.Run();
