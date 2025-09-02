@@ -21,19 +21,13 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Customers
         public async Task<Response<bool>> InsertAsync(CustomerDto2 CustomerssDto)
         {
             var response = new Response<bool>();
-            try
+
+            var Customers = _mapper.Map<Customer>(CustomerssDto);
+            response.Data = await _unitOfWork.Customers.InsertAsync(Customers);
+            if (response.Data)
             {
-                var Customers = _mapper.Map<Customer>(CustomerssDto);
-                response.Data = await _unitOfWork.Customers.InsertAsync(Customers);
-                if (response.Data)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Registro Exitoso!!!";
-                }
-            }
-            catch (Exception e)
-            {
-                response.Message = e.Message;
+                response.IsSuccess = true;
+                response.Message = "Registro Exitoso!!!";
             }
 
             return response;
@@ -63,18 +57,12 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Customers
         public async Task<Response<bool>> DeleteAsync(string CustomersId)
         {
             var response = new Response<bool>();
-            try
+
+            response.Data = await _unitOfWork.Customers.DeleteAsync(CustomersId);
+            if (response.Data)
             {
-                response.Data = await _unitOfWork.Customers.DeleteAsync(CustomersId);
-                if (response.Data)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Eliminación Exitosa!!!";
-                }
-            }
-            catch (Exception e)
-            {
-                response.Message = e.Message;
+                response.IsSuccess = true;
+                response.Message = "Eliminación Exitosa!!!";
             }
 
             return response;
@@ -83,19 +71,13 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Customers
         public async Task<Response<CustomerDto2>> GetAsync(string CustomersId)
         {
             var response = new Response<CustomerDto2>();
-            try
+
+            var Customers = await _unitOfWork.Customers.GetByIdAsync(CustomersId);
+            response.Data = _mapper.Map<CustomerDto2>(Customers);
+            if (response.Data != null)
             {
-                var Customers = await _unitOfWork.Customers.GetByIdAsync(CustomersId);
-                response.Data = _mapper.Map<CustomerDto2>(Customers);
-                if (response.Data != null)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Consulta Exitosa!!!";
-                }
-            }
-            catch (Exception e)
-            {
-                response.Message = e.Message;
+                response.IsSuccess = true;
+                response.Message = "Consulta Exitosa!!!";
             }
 
             return response;
@@ -104,19 +86,13 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Customers
         public async Task<Response<IEnumerable<CustomerDto2>>> GetAllAsync()
         {
             var response = new Response<IEnumerable<CustomerDto2>>();
-            try
+
+            var Customerss = await _unitOfWork.Customers.GetAllAsync();
+            response.Data = _mapper.Map<IEnumerable<CustomerDto2>>(Customerss);
+            if (response.Data != null)
             {
-                var Customerss = await _unitOfWork.Customers.GetAllAsync();
-                response.Data = _mapper.Map<IEnumerable<CustomerDto2>>(Customerss);
-                if (response.Data != null)
-                {
-                    response.IsSuccess = true;
-                    response.Message = "Consulta Exitosa!!!";
-                }
-            }
-            catch (Exception e)
-            {
-                response.Message = e.Message;
+                response.IsSuccess = true;
+                response.Message = "Consulta Exitosa!!!";
             }
 
             return response;
@@ -125,26 +101,21 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Customers
         public async Task<ResponsePagination<IEnumerable<CustomerDto>>> GetAllWithPaginationAsync(int pageNumber, int pageSize)
         {
             var response = new ResponsePagination<IEnumerable<CustomerDto>>();
-            try
-            {
-                var count = await _unitOfWork.Customers.CountAsync();
 
-                var customers = await _unitOfWork.Customers.GetAllWithPaginationAsync(pageNumber, pageSize);
-                response.Data = _mapper.Map<IEnumerable<CustomerDto>>(customers);
+            var count = await _unitOfWork.Customers.CountAsync();
 
-                if (response.Data != null)
-                {
-                    response.PageNumber = pageNumber;
-                    response.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-                    response.TotalCount = count;
-                    response.IsSuccess = true;
-                    response.Message = "Consulta Paginada Exitosa!!!";
-                }
-            }
-            catch (Exception ex)
+            var customers = await _unitOfWork.Customers.GetAllWithPaginationAsync(pageNumber, pageSize);
+            response.Data = _mapper.Map<IEnumerable<CustomerDto>>(customers);
+
+            if (response.Data != null)
             {
-                response.Message = ex.Message;
+                response.PageNumber = pageNumber;
+                response.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+                response.TotalCount = count;
+                response.IsSuccess = true;
+                response.Message = "Consulta Paginada Exitosa!!!";
             }
+
             return response;
         }
     }

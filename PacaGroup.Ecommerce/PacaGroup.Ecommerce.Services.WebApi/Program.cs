@@ -1,15 +1,16 @@
 ﻿using Asp.Versioning.ApiExplorer;
 using HealthChecks.UI.Client;
+using Pacagroup.Ecommerce.Infrastructure;
+using PacaGroup.Ecommerce.Application.UseCases;
+using PacaGroup.Ecommerce.Persistence;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Feature;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.HealthCheck;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Injection;
+using PacaGroup.Ecommerce.Services.WebApi.Modules.Middleware;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.RateLimiter;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Versioning;
-using PacaGroup.Ecommerce.Persistence;
-using PacaGroup.Ecommerce.Application.UseCases;
-using Pacagroup.Ecommerce.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -161,5 +162,8 @@ app.MapHealthChecksUI(options =>
 //    conf.WatchPageUsername = builder.Configuration["WatchDog:WatchPageUsername"];
 //    conf.WatchPagePassword = builder.Configuration["WatchDog:WatchPagePassword"];
 //});
+
+// Middelware Personalizados
+app.AddMiddleware();
 
 app.Run();
