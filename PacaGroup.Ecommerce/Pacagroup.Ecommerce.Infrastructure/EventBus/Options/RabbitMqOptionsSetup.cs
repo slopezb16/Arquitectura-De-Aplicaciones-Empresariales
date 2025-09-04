@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Pacagroup.Ecommerce.Infrastructure.EventBus.Options
+namespace PacaGroup.Ecommerce.Infrastructure.EventBus.Options
 {
     public class RabbitMqOptionsSetup : IConfigureOptions<RabbitMqOptions>
     {

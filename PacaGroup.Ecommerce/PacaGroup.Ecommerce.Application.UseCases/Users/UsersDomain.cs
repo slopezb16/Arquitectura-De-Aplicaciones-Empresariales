@@ -1,5 +1,6 @@
 ﻿using PacaGroup.Ecommerce.Application.Interface.Persistense;
 using PacaGroup.Ecommerce.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace PacaGroup.Ecommerce.Application.UseCases
 {
@@ -15,10 +16,10 @@ namespace PacaGroup.Ecommerce.Application.UseCases
             _unitOfWork = unitOfWork;
         }
         // Implementación del método Authenticate
-        public User Authenticate(string userName, string password)
+        public async Task<User> Authenticate(string userName, string password)
         {
             //return _usersRepository.Authenticate(userName, password);
-            return _unitOfWork.Users.Authenticate(userName, password);
+            return await _unitOfWork.Users.Authenticate(userName, password);
         }
     }
 }

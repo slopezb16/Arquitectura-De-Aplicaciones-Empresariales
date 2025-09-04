@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning.ApiExplorer;
 using HealthChecks.UI.Client;
-using Pacagroup.Ecommerce.Infrastructure;
+using PacaGroup.Ecommerce.Infrastructure;
 using PacaGroup.Ecommerce.Application.UseCases;
 using PacaGroup.Ecommerce.Persistence;
 using PacaGroup.Ecommerce.Services.WebApi.Modules.Authentication;

@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Pacagroup.Ecommerce.Infrastructure.Notification.Options;
+using PacaGroup.Ecommerce.Infrastructure.Notification.Options;
 using PacaGroup.Ecommerce.Application.Interface.Infrastructure;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-namespace Pacagroup.Ecommerce.Infrastructure.Notification
+namespace PacaGroup.Ecommerce.Infrastructure.Notification
 {
     public class NotificationSendGrid : INotification
     {

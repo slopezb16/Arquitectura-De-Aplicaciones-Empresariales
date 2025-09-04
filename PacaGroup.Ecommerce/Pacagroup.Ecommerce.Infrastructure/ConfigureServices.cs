@@ -1,14 +1,14 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Pacagroup.Ecommerce.Infrastructure.EventBus;
-using Pacagroup.Ecommerce.Infrastructure.EventBus.Options;
-using Pacagroup.Ecommerce.Infrastructure.Notification;
-using Pacagroup.Ecommerce.Infrastructure.Notification.Options;
+using PacaGroup.Ecommerce.Infrastructure.EventBus;
+using PacaGroup.Ecommerce.Infrastructure.EventBus.Options;
+using PacaGroup.Ecommerce.Infrastructure.Notification;
+using PacaGroup.Ecommerce.Infrastructure.Notification.Options;
 using PacaGroup.Ecommerce.Application.Interface.Infrastructure;
 using SendGrid.Extensions.DependencyInjection;
 
-namespace Pacagroup.Ecommerce.Infrastructure
+namespace PacaGroup.Ecommerce.Infrastructure
 {
     public static class ConfigureServices
     {

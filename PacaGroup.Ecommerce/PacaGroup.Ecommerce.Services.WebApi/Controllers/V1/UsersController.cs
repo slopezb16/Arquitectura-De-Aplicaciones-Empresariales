@@ -10,6 +10,7 @@ using PacaGroup.Ecommerce.Transversal.Common;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -49,9 +50,9 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V1
         [AllowAnonymous]
         [HttpPost]
         // GET: api/<UsersController>
-        public IActionResult Authenticate([FromBody] UserDto usersDto)
+        public async Task<IActionResult> Authenticate([FromBody] UserDto usersDto)
         {
-            var response = _usersApplication.Authenticate(usersDto.UserName, usersDto.Password);
+            var response = await _usersApplication.Authenticate(usersDto.UserName, usersDto.Password);
             if (response.IsSuccess)
             {
                 if (response.Data != null)

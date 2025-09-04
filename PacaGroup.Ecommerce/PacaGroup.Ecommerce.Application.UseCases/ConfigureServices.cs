@@ -19,6 +19,11 @@ namespace PacaGroup.Ecommerce.Application.UseCases
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            // MediarR
+            services.AddMediatR(cfg => {
+                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            });
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             // Application

@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using PacaGroup.Ecommerce.Application.Interface.Infrastructure;
 
-namespace Pacagroup.Ecommerce.Infrastructure.EventBus
+namespace PacaGroup.Ecommerce.Infrastructure.EventBus
 {
     public class EventBusRabbitMQ : IEventBus
     {

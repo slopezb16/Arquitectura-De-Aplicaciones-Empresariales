@@ -8,6 +8,6 @@ namespace PacaGroup.Ecommerce.Application.Interface.Persistense
         /// Metodo de autenticacion de usuarios
         /// Toma el nombre de usuario y la contraseña
         /// Deberia retornar el usuario autenticado
-        User Authenticate(string userName, string password);
+        Task<User> Authenticate(string userName, string password);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Pacagroup.Ecommerce.Infrastructure.EventBus.Options
+﻿namespace PacaGroup.Ecommerce.Infrastructure.EventBus.Options
 {
     public class RabbitMqOptions
     {

@@ -18,7 +18,8 @@ namespace PacaGroup.Ecommerce.Persistence.Repositories
             _context = context;
         }
         // Implementación del método Authenticate
-        public User Authenticate(string userName, string password)
+        //public User Authenticate(string userName, string password)
+        public async Task<User> Authenticate(string userName, string password)
         {
             //using (var connection = _connectionFactory.GetConnection)
             using (var connection = _context.CreateConnection())
@@ -28,7 +29,8 @@ namespace PacaGroup.Ecommerce.Persistence.Repositories
                 parameters.Add("UserName", userName);
                 parameters.Add("Password", password);
 
-                var user = connection.QuerySingle<User>(query, param: parameters, commandType: CommandType.StoredProcedure);
+                //var user = connection.QuerySingle<User>(query, param: parameters, commandType: CommandType.StoredProcedure);
+                var user = await connection.QuerySingleAsync<User>(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return user;
             }
         }

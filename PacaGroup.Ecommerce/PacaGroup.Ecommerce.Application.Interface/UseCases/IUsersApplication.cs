@@ -14,6 +14,6 @@ namespace PacaGroup.Ecommerce.Application.Interface.UseCases
         /// Metodo de autenticacion de usuarios
         /// Toma el nombre de usuario y la contraseña
         /// Deberia retornar el usuario autenticado
-        Response<UserDto> Authenticate(string userName, string password);
+        Task<Response<UserDto>> Authenticate(string userName, string password);
     }
 }

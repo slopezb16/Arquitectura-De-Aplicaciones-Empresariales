@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using PacaGroup.Ecommerce.Application.DTO;
+using PacaGroup.Ecommerce.Application.UseCases.Customers.Commands.CreateCustomerCommand;
+using PacaGroup.Ecommerce.Application.UseCases.Customers.Commands.UpdateCustomerCommand;
 using PacaGroup.Ecommerce.Domain.Entities;
 using PacaGroup.Ecommerce.Domain.Events;
 
@@ -15,6 +17,10 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Commons.Mappings
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Discount, DiscountDto>().ReverseMap();
             CreateMap<Discount, DiscountCreatedEvent>().ReverseMap();
+
+            //Mappeo entre los Command y las entidades de Negocio
+            CreateMap<Customer, CreateCustomerCommand>().ReverseMap();
+            CreateMap<Customer, UpdateCustomerCommand>().ReverseMap();
 
             //CreateMap<Customer, CustomerDto>().ReverseMap()
             //.ForMember(destination => destination.CustomerId, source => source.MapFrom(src => src.CustomerId))

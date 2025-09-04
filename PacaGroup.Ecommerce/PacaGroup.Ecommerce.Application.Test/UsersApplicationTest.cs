@@ -61,7 +61,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
             // Simular el repo dentro de UnitOfWork
             _unitOfWorkMock
                 .Setup(u => u.Users.Authenticate("admin", "123"))
-                .Returns(domainUser);
+                .ReturnsAsync(domainUser);
 
             _mapperMock
                 .Setup(m => m.Map<UserDto>(domainUser))

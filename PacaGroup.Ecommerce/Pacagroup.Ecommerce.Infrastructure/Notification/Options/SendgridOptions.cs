@@ -1,4 +1,4 @@
-﻿namespace Pacagroup.Ecommerce.Infrastructure.Notification.Options
+﻿namespace PacaGroup.Ecommerce.Infrastructure.Notification.Options
 {
     public class SendgridOptions
     {

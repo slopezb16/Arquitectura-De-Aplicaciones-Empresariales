@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Pacagroup.Ecommerce.Infrastructure.Notification.Options
+namespace PacaGroup.Ecommerce.Infrastructure.Notification.Options
 {
     public class SendgridOptionsSetup : IConfigureOptions<SendgridOptions>
     {
