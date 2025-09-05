@@ -30,7 +30,7 @@ namespace PacaGroup.Ecommerce.Persistence.Repositories
                 parameters.Add("Password", password);
 
                 //var user = connection.QuerySingle<User>(query, param: parameters, commandType: CommandType.StoredProcedure);
-                var user = await connection.QuerySingleAsync<User>(query, param: parameters, commandType: CommandType.StoredProcedure);
+                var user = await connection.QuerySingleOrDefaultAsync<User>(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return user;
             }
         }

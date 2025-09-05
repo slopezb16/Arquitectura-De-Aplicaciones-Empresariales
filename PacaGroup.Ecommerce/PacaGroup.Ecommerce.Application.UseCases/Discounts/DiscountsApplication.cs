@@ -3,7 +3,6 @@ using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface.Infrastructure;
 using PacaGroup.Ecommerce.Application.Interface.Persistense;
 using PacaGroup.Ecommerce.Application.Interface.UseCases;
-using PacaGroup.Ecommerce.Application.Validator;
 using PacaGroup.Ecommerce.Domain.Entities;
 using PacaGroup.Ecommerce.Domain.Events;
 using PacaGroup.Ecommerce.Transversal.Common;
@@ -16,15 +15,16 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Discounts
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IEventBus _eventBus;
-        private readonly DiscountDtoValidator _discountDtoValidator;
         private readonly INotification _notification;
+        //Ya no necesitamos estas lineas porque implementamos MediatR con Pipeline validator Behavior
+        //private readonly DiscountDtoValidator _discountDtoValidator;
 
-        public DiscountsApplication(IUnitOfWork unitOfWork, IMapper mapper, IEventBus eventBus, DiscountDtoValidator discountDtoValidator, INotification notification)
+        public DiscountsApplication(IUnitOfWork unitOfWork, IMapper mapper, IEventBus eventBus, INotification notification)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _eventBus = eventBus;
-            _discountDtoValidator = discountDtoValidator;
+            //_discountDtoValidator = discountDtoValidator;
             _notification = notification;
         }
         public async Task<Response<bool>> Create(DiscountDto discountDto, CancellationToken cancellationToken = default)
@@ -32,13 +32,15 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Discounts
             var response = new Response<bool>();
             try
             {
-                var validation = await _discountDtoValidator.ValidateAsync(discountDto, cancellationToken);
-                if (!validation.IsValid)
-                {
-                    response.Message = "Errores de Validación";
-                    response.Errors = validation.Errors;
-                    return response;
-                }
+                //Ya no necesitamos estas lineas porque implementamos MediatR con Pipeline validator Behavior
+                //var validation = await _discountDtoValidator.ValidateAsync(discountDto, cancellationToken);
+                //if (!validation.IsValid)
+                //{
+                //    response.Message = "Errores de Validación";
+                //    response.Errors = validation.Errors;
+                //    return response;
+                //}
+
                 var discount = _mapper.Map<Discount>(discountDto);
                 await _unitOfWork.Discounts.InsertAsync(discount);
 
@@ -134,13 +136,14 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Discounts
             var response = new Response<bool>();
             try
             {
-                var validation = await _discountDtoValidator.ValidateAsync(discountDto, cancellationToken);
-                if (!validation.IsValid)
-                {
-                    response.Message = "Errores de Validación";
-                    response.Errors = validation.Errors;
-                    return response;
-                }
+                //Ya no necesitamos estas lineas porque implementamos MediatR con Pipeline validator Behavior
+                //var validation = await _discountDtoValidator.ValidateAsync(discountDto, cancellationToken);
+                //if (!validation.IsValid)
+                //{
+                //    response.Message = "Errores de Validación";
+                //    response.Errors = validation.Errors;
+                //    return response;
+                //}
                 var discount = _mapper.Map<Discount>(discountDto);
                 await _unitOfWork.Discounts.UpdateAsync(discount);
 

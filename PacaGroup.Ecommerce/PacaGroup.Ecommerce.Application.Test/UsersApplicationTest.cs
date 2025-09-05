@@ -6,6 +6,7 @@ using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface.Persistense;
 using PacaGroup.Ecommerce.Application.UseCases;
 using PacaGroup.Ecommerce.Application.UseCases.Users;
+using System.Threading.Tasks;
 
 namespace PacaGroup.Ecommerce.Application.IntegrationTest
 {
@@ -26,19 +27,19 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
 
             _usersApplication = new UsersApplication(
                 _mapperMock.Object,
-                _unitOfWorkMock.Object,   // 👈 Aquí va IUnitOfWork
-                _validatorMock.Object
+                _unitOfWorkMock.Object   // 👈 Aquí va IUnitOfWork
+                //_validatorMock.Object
             );
         }
 
         [TestMethod]
-        public void Authenticate_CuandoNoSeEnvianParametros_RetornarMensajeErrorValidacion()
+        public async Task Authenticate_CuandoNoSeEnvianParametros_RetornarMensajeErrorValidacion()
         {
             _validatorMock
                 .Setup(v => v.Validate(It.IsAny<UserDto>()))
                 .Returns(new ValidationResult(new[] { new ValidationFailure("UserName", "Requerido") }));
 
-            var result = _usersApplication.Authenticate("", "");
+            var result = await _usersApplication.Authenticate("", "");
 
             Assert.AreEqual("Errores de Validación", result.Message);
             Assert.IsFalse(result.IsSuccess);
@@ -46,7 +47,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
         }
 
         [TestMethod]
-        public void Authenticate_CuandoSeEnvianParametrosCorrectos_RetornarMensajeExito()
+        public async Task Authenticate_CuandoSeEnvianParametrosCorrectos_RetornarMensajeExito()
         {
             _validatorMock
                 .Setup(v => v.Validate(It.IsAny<UserDto>()))
@@ -67,7 +68,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
                 .Setup(m => m.Map<UserDto>(domainUser))
                 .Returns(new UserDto { UserName = "admin", Password = "123" });
 
-            var result = _usersApplication.Authenticate("admin", "123");
+            var result = await _usersApplication.Authenticate("admin", "123");
 
             Assert.IsTrue(result.IsSuccess);
             Assert.AreEqual("Autenticación Exitosa!!!", result.Message);
@@ -75,7 +76,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
         }
 
         [TestMethod]
-        public void Authenticate_CuandoSeEnvianParametrosIncorrectos_RetornarMensajeUsuarioNoExiste()
+        public async Task Authenticate_CuandoSeEnvianParametrosIncorrectos_RetornarMensajeUsuarioNoExiste()
         {
             _validatorMock
                 .Setup(v => v.Validate(It.IsAny<UserDto>()))
@@ -85,7 +86,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
                 .Setup(u => u.Users.Authenticate("invalido", "xxx"))
                 .Throws<InvalidOperationException>();
 
-            var result = _usersApplication.Authenticate("invalido", "xxx");
+            var result = await _usersApplication.Authenticate("invalido", "xxx");
 
             Assert.IsFalse(result.IsSuccess);
             Assert.AreEqual("Usuario no existe", result.Message);

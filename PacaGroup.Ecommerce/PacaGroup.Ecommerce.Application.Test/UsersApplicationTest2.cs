@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PacaGroup.Ecommerce.Application.Interface.UseCases;
 using PacaGroup.Ecommerce.Application.UseCases;
-using PacaGroup.Ecommerce.Application.Validator;
 
 namespace PacaGroup.Ecommerce.Application.IntegrationTest
 {
@@ -29,7 +28,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
             services.AddSingleton<IConfiguration>(_configuration);
 
             // Registrar validadores de FluentValidation
-            services.AddValidatorsFromAssemblyContaining<UsersDtoValidator>();
+            //services.AddValidatorsFromAssemblyContaining<UsersDtoValidator>();
 
             // Registrar tus servicios de la aplicación
             services.AddApplicationServices();
@@ -41,20 +40,20 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public async Task TestMethod1()
         {
             using var scope = _scopeFactory.CreateScope();
 
             // Ejemplo: obtener un servicio real desde DI
             var usersApp = scope.ServiceProvider.GetRequiredService<IUsersApplication>();
 
-            var result = usersApp.Authenticate("", "");
+            var result = await usersApp.Authenticate("", "");
 
             Assert.AreEqual("Errores de Validación", result.Message);
         }
 
         [TestMethod]
-        public void Authenticate_CuandoNoSeEnvianParametros_RetornarMensajeErrorValidacion2()
+        public async Task Authenticate_CuandoNoSeEnvianParametros_RetornarMensajeErrorValidacion2()
         {
             using var scope = _scopeFactory.CreateScope();
             var context = scope.ServiceProvider.GetService<IUsersApplication>();
@@ -65,7 +64,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
             var expected = "Errores de Validación";
 
             // Act            
-            var result = context.Authenticate(userName, password);
+            var result = await context.Authenticate(userName, password);
             var actual = result.Message;
 
             // Assert
@@ -73,7 +72,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
         }
 
         [TestMethod]
-        public void Authenticate_CuandoSeEnvianParametrosCorrectos_RetornarMensajeExito2()
+        public async Task Authenticate_CuandoSeEnvianParametrosCorrectos_RetornarMensajeExito2()
         {
             using var scope = _scopeFactory.CreateScope();
             var context = scope.ServiceProvider.GetService<IUsersApplication>();
@@ -84,7 +83,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
             var expected = "Autenticación Exitosa!!!";
 
             // Act
-            var result = context.Authenticate(userName, password);
+            var result = await context.Authenticate(userName, password);
             var actual = result.Message;
 
             // Assert
@@ -92,7 +91,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
         }
 
         [TestMethod]
-        public void Authenticate_CuandoSeEnvianParametrosIncorrectos_RetornarMensajeUsuarioNoExiste2()
+        public async Task Authenticate_CuandoSeEnvianParametrosIncorrectos_RetornarMensajeUsuarioNoExiste2()
         {
             using var scope = _scopeFactory.CreateScope();
             var context = scope.ServiceProvider.GetService<IUsersApplication>();
@@ -103,7 +102,7 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
             var expected = "Usuario no existe";
 
             // Act
-            var result = context.Authenticate(userName, password);
+            var result = await context.Authenticate(userName, password);
             var actual = result.Message;
 
             // Assert
@@ -118,10 +117,10 @@ namespace PacaGroup.Ecommerce.Application.IntegrationTest
         [DataRow("", "", "Errores de Validación")]
         [DataRow("ALEX", "123456", "Autenticación Exitosa!!!")]
         [DataRow("ALEX", "123456899", "Usuario no existe")]
-        public void Authenticate_TestCases(string user, string pass, string expected)
+        public async Task Authenticate_TestCases(string user, string pass, string expected)
         {
             var context = GetUsersApp();
-            var result = context.Authenticate(user, pass);
+            var result = await context.Authenticate(user, pass);
             Assert.AreEqual(expected, result.Message);
         }
 

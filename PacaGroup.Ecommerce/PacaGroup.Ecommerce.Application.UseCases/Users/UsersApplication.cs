@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using FluentValidation;
 using PacaGroup.Ecommerce.Application.DTO;
 using PacaGroup.Ecommerce.Application.Interface.Persistense;
 using PacaGroup.Ecommerce.Application.Interface.UseCases;
 using PacaGroup.Ecommerce.Transversal.Common;
-using System.Threading.Tasks;
 
 namespace PacaGroup.Ecommerce.Application.UseCases.Users
 {
@@ -12,27 +10,32 @@ namespace PacaGroup.Ecommerce.Application.UseCases.Users
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly UsersDtoValidator _usersDtoValidator;
-        private readonly IValidator<UserDto> _usersDtoValidator;
 
-        public UsersApplication(IMapper mapper, IUnitOfWork unitOfWork, IValidator<UserDto> usersDtoValidator)
+        //Ya no necesitamos estas lineas porque implementamos MediatR con Pipeline validator Behavior
+        //private readonly UsersDtoValidator _usersDtoValidator;
+        //private readonly IValidator<UserDto> _usersDtoValidator;
+
+        public UsersApplication(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            _usersDtoValidator = usersDtoValidator;
+
+            //Ya no necesitamos estas lineas porque implementamos MediatR con Pipeline validator Behavior
+            //_usersDtoValidator = usersDtoValidator;
         }
 
         public async Task<Response<UserDto>> Authenticate(string userName, string password)
         {
             var response = new Response<UserDto>();
-            var validation = _usersDtoValidator.Validate(new UserDto() { UserName = userName, Password = password });
+            //Ya no necesitamos estas lineas porque implementamos MediatR con Pipeline validator Behavior
+            //var validation = _usersDtoValidator.Validate(new UserDto() { UserName = userName, Password = password });
 
-            if (!validation.IsValid)
-            {
-                response.Message = "Errores de Validación";
-                response.Errors = validation.Errors;
-                return response;
-            }
+            //if (!validation.IsValid)
+            //{
+            //    response.Message = "Errores de Validación";
+            //    response.Errors = validation.Errors;
+            //    return response;
+            //}
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
             {
                 response.Message = "Parámetros no pueden ser vacios.";
