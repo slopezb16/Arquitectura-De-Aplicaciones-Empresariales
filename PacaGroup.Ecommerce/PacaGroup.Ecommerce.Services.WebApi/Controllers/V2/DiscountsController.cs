@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Timeouts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using PacaGroup.Ecommerce.Application.DTO;
@@ -93,9 +94,13 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
             Tags = new[] { "Discounts" })]
         [SwaggerResponse(200, "Discount details", typeof(Response<DiscountDto>))]
         [SwaggerResponse(404, "Discount not found")]
+        [RequestTimeout("CustomPolicy")]
         public async Task<IActionResult> Get(int id)
         {
-            var response = await _discountsApplication.Get(id);
+            //Sin TimeOut
+            //var response = await _discountsApplication.Get(id);
+            // Con TimeOut
+            var response = await _discountsApplication.Get(id, HttpContext.RequestAborted);
             if (response.IsSuccess)
                 return Ok(response);
 
@@ -112,7 +117,10 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V2
         [SwaggerResponse(404, "No discounts found")]
         public async Task<IActionResult> GetAll()
         {
-            var response = await _discountsApplication.GetAll();
+            //Sin TimeOut
+            //var response = await _discountsApplication.GetAll();
+            // Con TimeOut
+            var response = await _discountsApplication.GetAll(HttpContext.RequestAborted);
             if (response.IsSuccess)
                 return Ok(response);
 

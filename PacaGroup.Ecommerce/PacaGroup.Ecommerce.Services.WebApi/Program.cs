@@ -143,6 +143,9 @@ app.UseAuthorization();
 // RateLimiting
 app.UseRateLimiter();
 
+// MiddleWare TimeOut
+app.UseRequestTimeouts();
+
 app.MapControllers();
 
 // ❤️ Endpoints de health

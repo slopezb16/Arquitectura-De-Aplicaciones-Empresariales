@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http.Timeouts;
 using PacaGroup.Ecommerce.Services.WebApi.Helpers;
 using System.Text.Json.Serialization;
 
@@ -32,6 +30,13 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Feature
             {
                 var enumConverter = new JsonStringEnumConverter();
                 opts.JsonSerializerOptions.Converters.Add(enumConverter);
+            });
+
+            // Midelware TimeOut
+            services.AddRequestTimeouts(options => {
+                options.DefaultPolicy =
+                    new RequestTimeoutPolicy { Timeout = TimeSpan.FromMilliseconds(1500) };
+                options.AddPolicy("CustomPolicy", TimeSpan.FromMilliseconds(2000));
             });
 
             return services;
