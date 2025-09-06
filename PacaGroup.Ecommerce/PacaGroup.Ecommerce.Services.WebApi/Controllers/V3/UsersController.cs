@@ -53,6 +53,12 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V3
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettingJWT.Key);
+            //var claims = new Dictionary<string, object>
+            //{
+            //    { "userid", usersDto.Data.UserId.ToString() },
+            //    { "username", usersDto.Data.UserName }
+            //};
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
@@ -63,6 +69,7 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Controllers.V3
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Issuer = _appSettingJWT.Issuer,
                 Audience = _appSettingJWT.Audience
+                //Claims = claims
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);

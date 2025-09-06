@@ -1,4 +1,6 @@
-﻿using PacaGroup.Ecommerce.Services.WebApi.Modules.GlobalException;
+﻿using PacaGroup.Ecommerce.Application.Interface.Presentation;
+using PacaGroup.Ecommerce.Services.WebApi.Modules.GlobalException;
+using PacaGroup.Ecommerce.Services.WebApi.Services;
 
 namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Injection
 {
@@ -31,6 +33,9 @@ namespace PacaGroup.Ecommerce.Services.WebApi.Modules.Injection
 
             // Exepcion globales
             services.AddTransient<GlobalExceptionHandler>();
+
+            // Interceptor
+            services.AddScoped<ICurrentUser, CurrentUser>();
 
             // Patrones de diseno
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
